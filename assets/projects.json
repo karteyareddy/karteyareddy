@@ -1,0 +1,21 @@
+{
+  "_comment": "Featured repos for Karteya Reddy (karteyareddy). Replace repo names with your actual GitHub repository names.",
+  "projects": [
+    {
+      "repo": "project-one",
+      "description": "A full-stack web application built with React, Next.js, and modern cloud infrastructure."
+    },
+    {
+      "repo": "project-two",
+      "description": "An AI & Machine Learning project leveraging Python, intelligent agents, and data pipelines."
+    },
+    {
+      "repo": "project-three",
+      "description": "A high-performance scalable backend API service engineered with TypeScript and Node.js."
+    },
+    {
+      "repo": "project-four",
+      "description": "An open-source developer tool and utility focused on productivity and developer experience."
+    }
+  ]
+}

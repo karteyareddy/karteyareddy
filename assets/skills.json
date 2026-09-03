@@ -1,0 +1,14 @@
+{
+  "title": "Skill Radar",
+  "_comment": "Skill ratings for Karteya Reddy (0-100 self-rated).",
+  "axes": [
+    { "label": "Python",     "value": 85 },
+    { "label": "ML / AI",    "value": 80 },
+    { "label": "JavaScript", "value": 88 },
+    { "label": "TypeScript", "value": 82 },
+    { "label": "React / Next", "value": 85 },
+    { "label": "Node / API", "value": 78 },
+    { "label": "Databases",  "value": 75 },
+    { "label": "DSA",        "value": 75 }
+  ]
+}
