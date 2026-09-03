@@ -1,78 +1,124 @@
 <div align="center">
 
-<!-- PORTRAIT - clean circular photo avatar -->
-<img src="assets/avatar.png" width="240" alt="Karteya Reddy">
+<!-- HERO HUD HEADER -->
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d1117,50:00f0ff,100:39d353&height=200&section=header&text=KARTEYA%20REDDY&fontSize=42&fontColor=ffffff&fontAlignY=35&desc=AI%20%2F%20ML%20%26%20FULL-STACK%20SOFTWARE%20ENGINEER&descAlignY=62&descSize=16" width="100%" alt="Header Banner" />
+</p>
 
-<br>
-
-<!-- NAME / TAGLINE - animated typing -->
+<!-- CYBER AVATAR -->
 <a href="https://github.com/karteyareddy">
-  <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=26&duration=2600&pause=900&color=39D353&center=true&vCenter=true&width=560&lines=Karteya+Reddy;Software+Engineer;Machine+Learning+%26+Web+Dev;01100011+01101111+01100100+01100101" alt="typing banner">
+  <img src="assets/cyber_avatar.png" width="230" alt="Karteya Reddy Cyberpunk Avatar" style="border-radius: 50%; border: 3px solid #00F0FF; box-shadow: 0 0 25px rgba(0,240,255,0.6);" />
 </a>
 
-<br>
+<br><br>
 
-<!-- SOCIALS -->
-<a href="https://www.linkedin.com/in/kristipati-karteya-reddy-947247136/"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"></a>
-<a href="mailto:reddykarteya@gmail.com"><img src="https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"></a>
-<a href="https://github.com/karteyareddy"><img src="https://img.shields.io/badge/Portfolio-111111?style=for-the-badge&logo=vercel&logoColor=white" alt="Portfolio"></a>
+<!-- ANIMATED TYPING BANNER -->
+<a href="https://github.com/karteyareddy">
+  <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=24&duration=2500&pause=800&color=00F0FF&center=true&vCenter=true&width=600&lines=System.init(%22Karteya+Reddy%22);AI+%26+Full-Stack+Software+Engineer;Architecting+Scalable+Intelligent+Systems;01101011+01100001+01101110+01110100" alt="Typing Banner" />
+</a>
 
-<img src="https://komarev.com/ghpvc/?username=karteyareddy&style=flat&color=39d353&label=profile+views" alt="profile views">
+<br><br>
+
+<!-- CYBER HUD STATUS BADGES -->
+<p align="center">
+  <img src="https://img.shields.io/badge/SYSTEM-ONLINE-39D353?style=for-the-badge&logo=gnubash&logoColor=black" alt="Status Online" />
+  <img src="https://img.shields.io/badge/CORE-AI_%2B_FULLSTACK-00F0FF?style=for-the-badge&logo=python&logoColor=black" alt="Core Skill" />
+  <img src="https://img.shields.io/badge/LOCATION-EARTH%20//%20INDIA-FF007A?style=for-the-badge&logo=googlemaps&logoColor=white" alt="Location" />
+</p>
+
+<!-- SOCIAL BADGES -->
+<p align="center">
+  <a href="https://www.linkedin.com/in/kristipati-karteya-reddy-947247136/">
+    <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
+  </a>
+  <a href="mailto:reddykarteya@gmail.com">
+    <img src="https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" />
+  </a>
+  <a href="https://github.com/karteyareddy">
+    <img src="https://img.shields.io/badge/Portfolio-111111?style=for-the-badge&logo=vercel&logoColor=white" alt="Portfolio" />
+  </a>
+</p>
+
+<!-- PROFILE VIEWS -->
+<p align="center">
+  <img src="https://komarev.com/ghpvc/?username=karteyareddy&style=flat-square&color=00f0ff&label=CYBER_VISITORS" alt="Profile Views" />
+</p>
 
 </div>
 
 ---
 
-## `~/` whoami
+## ⚡ `~/whoami.sh` — TERMINAL MATRIX
 
 ```console
-$ cat about.txt
+karteyareddy@cyberdeck:~$ ./whoami.sh --verbose --mode=full
 ```
 
-Hi, I'm **Karteya Reddy**. I build software at the intersection of full-stack web development and artificial intelligence,
-and I solve problems for fun when neither of those is cooperating.
-
-- Currently building **[Full-Stack & AI Apps](https://github.com/karteyareddy)**
-- Learning **Next.js & Machine Learning Systems**
-- Fun fact: **I love building clean, scalable solutions to complex problems.**
+```json
+{
+  "developer": "Karteya Reddy",
+  "title": "Software Engineer (AI / ML & Full-Stack)",
+  "mission": "Engineering intelligent, high-throughput systems at the edge of Web & Artificial Intelligence",
+  "active_stack": {
+    "languages": ["Python", "TypeScript", "JavaScript", "C++", "SQL"],
+    "frameworks": ["React", "Next.js", "Node.js", "Express", "TailwindCSS"],
+    "ai_ml": ["PyTorch", "TensorFlow", "OpenCV", "LLM Fine-tuning", "Neural Networks"],
+    "cloud_data": ["PostgreSQL", "MongoDB", "Docker", "Git / GitHub Actions"]
+  },
+  "status": "Architecting autonomous systems & full-stack web applications 🚀"
+}
+```
 
 <br>
 
+- 🔭 **Currently Building**: Advanced AI / ML agents & scalable web platforms
+- 🌱 **Learning & Researching**: LLM architectures, distributed backend scaling, and Next.js 14 App Router
+- 💬 **Ask me about**: Full-stack web architecture, Python AI pipelines, and API performance optimization
+- ⚡ **Fun Fact**: *"I solve complex engineering problems for fun when algorithms refuse to cooperate."*
+
+---
+
+## 🛠️ `~/toolbox` — TECH MATRIX
+
 <div align="center">
 
-## `~/` toolbox
+### 🧠 AI / ML & Data Science
+<img src="https://skillicons.dev/icons?i=python,cpp,html,css&perline=10" alt="AI Stack" />
 
-<img src="https://skillicons.dev/icons?i=python,cpp,js,ts,react,nextjs,nodejs,tailwind,postgres,mongodb,docker,git,github,vscode,html,css&perline=11" alt="tech stack">
+### ⚡ Frontend & Web Architecture
+<img src="https://skillicons.dev/icons?i=js,ts,react,nextjs,tailwind,bootstrap,figma&perline=10" alt="Frontend Stack" />
+
+### 🛡️ Backend, Cloud & Databases
+<img src="https://skillicons.dev/icons?i=nodejs,express,postgres,mongodb,docker,git,github&perline=10" alt="Backend Stack" />
+
+### 🛠️ Developer Ecosystem
+<img src="https://skillicons.dev/icons?i=vscode,powershell,linux,postman&perline=10" alt="Dev Tools" />
 
 </div>
 
 ---
 
-<div align="center">
+## 📊 `~/analytics` — SKILL RADAR & METRICS
 
-## `~/` skill radar
+<div align="center">
 
 <table>
 <tr>
 <td width="50%" align="center" valign="middle">
-
-<!-- Self-rated radar - edit assets/skills.json, the workflow redraws it -->
-<picture>
-  <source media="(prefers-color-scheme: dark)"  srcset="assets/radar-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="assets/radar-light.svg">
-  <img src="assets/radar-dark.svg" width="400" alt="skill radar chart">
-</picture>
-
+  <p align="center"><b>🎯 SELF-RATED SKILL RADAR</b></p>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/radar-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="assets/radar-light.svg">
+    <img src="assets/radar-dark.svg" width="400" alt="Skill Radar Chart">
+  </picture>
 </td>
 <td width="50%" align="center" valign="middle">
-
-<!-- Live radar built from real language byte counts across your repos -->
-<picture>
-  <source media="(prefers-color-scheme: dark)"  srcset="assets/radar-langs-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="assets/radar-langs-light.svg">
-  <img src="assets/radar-langs-dark.svg" width="400" alt="language radar chart">
-</picture>
-
+  <p align="center"><b>📈 LIVE REPOSITORY LANGUAGE MIX</b></p>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/radar-langs-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="assets/radar-langs-light.svg">
+    <img src="assets/radar-langs-dark.svg" width="400" alt="Language Radar Chart">
+  </picture>
 </td>
 </tr>
 </table>
@@ -81,60 +127,16 @@ and I solve problems for fun when neither of those is cooperating.
 
 ---
 
-<div align="center">
-
-## `~/` contribution calendar
-
-<!-- 3D isometric calendar, regenerated every 6h by .github/workflows/metrics.yml -->
-<img src="assets/metrics.isocalendar.svg" width="90%" alt="3D isometric contribution calendar">
-
-<br><br>
-
-<!-- Snake eats the contribution graph - .github/workflows/snake.yml -->
-<picture>
-  <source media="(prefers-color-scheme: dark)"  srcset="https://raw.githubusercontent.com/karteyareddy/karteyareddy/output/snake-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/karteyareddy/karteyareddy/output/snake.svg">
-  <img src="https://raw.githubusercontent.com/karteyareddy/karteyareddy/output/snake.svg" width="100%" alt="snake eating the contribution graph">
-</picture>
-
-</div>
-
----
+## 🚀 `~/selected-work` — FEATURED PROJECTS
 
 <div align="center">
 
-## `~/` the numbers
-
-<!-- Generated by scripts/cards.py into this repo. -->
-<picture>
-  <source media="(prefers-color-scheme: dark)"  srcset="assets/card-stats-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="assets/card-stats-light.svg">
-  <img src="assets/card-stats-dark.svg" width="480" alt="GitHub statistics">
-</picture>
-
-<br>
-
-<img src="assets/metrics.languages.svg" height="165" alt="most used languages">
-
-<br><br>
-
-<img src="assets/metrics.achievements.svg" width="90%" alt="achievements">
-
-</div>
-
----
-
-<div align="center">
-
-## `~/` selected work
-
-<!-- Cards generated by scripts/cards.py from assets/projects.json. -->
 <table>
 <tr>
 <td width="50%">
   <a href="https://github.com/karteyareddy/project-one">
     <picture>
-      <source media="(prefers-color-scheme: dark)"  srcset="assets/card-project-one-dark.svg">
+      <source media="(prefers-color-scheme: dark)" srcset="assets/card-project-one-dark.svg">
       <source media="(prefers-color-scheme: light)" srcset="assets/card-project-one-light.svg">
       <img src="assets/card-project-one-dark.svg" width="420" alt="project-one">
     </picture>
@@ -143,7 +145,7 @@ and I solve problems for fun when neither of those is cooperating.
 <td width="50%">
   <a href="https://github.com/karteyareddy/project-two">
     <picture>
-      <source media="(prefers-color-scheme: dark)"  srcset="assets/card-project-two-dark.svg">
+      <source media="(prefers-color-scheme: dark)" srcset="assets/card-project-two-dark.svg">
       <source media="(prefers-color-scheme: light)" srcset="assets/card-project-two-light.svg">
       <img src="assets/card-project-two-dark.svg" width="420" alt="project-two">
     </picture>
@@ -154,18 +156,18 @@ and I solve problems for fun when neither of those is cooperating.
 <td width="50%">
   <a href="https://github.com/karteyareddy/project-three">
     <picture>
-      <source media="(prefers-color-scheme: dark)"  srcset="assets/card-project-three-dark.svg">
+      <source media="(prefers-color-scheme: dark)" srcset="assets/card-project-three-dark.svg">
       <source media="(prefers-color-scheme: light)" srcset="assets/card-project-three-light.svg">
-      <img src="assets/card-project-three-light.svg" width="420" alt="project-three">
+      <img src="assets/card-project-three-dark.svg" width="420" alt="project-three">
     </picture>
   </a>
 </td>
 <td width="50%">
   <a href="https://github.com/karteyareddy/project-four">
     <picture>
-      <source media="(prefers-color-scheme: dark)"  srcset="assets/card-project-four-dark.svg">
+      <source media="(prefers-color-scheme: dark)" srcset="assets/card-project-four-dark.svg">
       <source media="(prefers-color-scheme: light)" srcset="assets/card-project-four-light.svg">
-      <img src="assets/card-project-four-light.svg" width="420" alt="project-four">
+      <img src="assets/card-project-four-dark.svg" width="420" alt="project-four">
     </picture>
   </a>
 </td>
@@ -174,12 +176,12 @@ and I solve problems for fun when neither of those is cooperating.
 
 <sub>
 
-| project | stack |
-|---|---|
-| **[project-one](https://github.com/karteyareddy/project-one)** | `React` `Next.js` |
-| **[project-two](https://github.com/karteyareddy/project-two)** | `Python` `Machine Learning` |
-| **[project-three](https://github.com/karteyareddy/project-three)** | `Node.js` `TypeScript` |
-| **[project-four](https://github.com/karteyareddy/project-four)** | `Python` `Open Source` |
+| ⚡ Project | 🛠️ Tech Stack | 📌 Overview |
+|---|---|---|
+| **[project-one](https://github.com/karteyareddy/project-one)** | `React` `Next.js` `Tailwind` | Full-stack web application with responsive UI & modern cloud backend. |
+| **[project-two](https://github.com/karteyareddy/project-two)** | `Python` `PyTorch` `AI` | Machine Learning intelligence engine & automated data pipeline. |
+| **[project-three](https://github.com/karteyareddy/project-three)** | `TypeScript` `Node.js` `Express` | High-throughput backend RESTful service & database layer. |
+| **[project-four](https://github.com/karteyareddy/project-four)** | `Python` `C++` `CLI` | Open-source developer tooling & command-line system suite. |
 
 </sub>
 
@@ -187,8 +189,50 @@ and I solve problems for fun when neither of those is cooperating.
 
 ---
 
+## 📈 `~/github-telemetry` — LIVE STATS & ACTIVITY
+
 <div align="center">
 
-<sub>`01110100 01101000 01100001 01101110 01101011 01101101 00100000 01100110 01101111 01110010 00100000 01110011 01100011 01110010 01101111 01101100 01101100 01101001 01101110 01100111`</sub>
+<!-- 3D ISOMETRIC CALENDAR -->
+<p align="center">
+  <img src="assets/metrics.isocalendar.svg" width="92%" alt="3D Isometric Contribution Calendar" />
+</p>
+
+<br>
+
+<!-- CONTRIBUTION SNAKE ANIMATION -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/karteyareddy/karteyareddy/output/snake-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/karteyareddy/karteyareddy/output/snake.svg">
+  <img src="https://raw.githubusercontent.com/karteyareddy/karteyareddy/output/snake.svg" width="98%" alt="Contribution Graph Snake" />
+</picture>
+
+<br><br>
+
+<!-- GITHUB STATS CARD -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/card-stats-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="assets/card-stats-light.svg">
+  <img src="assets/card-stats-dark.svg" width="480" alt="GitHub Statistics Card">
+</picture>
+
+<br><br>
+
+<!-- LANGUAGE DISTRIBUTION & ACHIEVEMENTS -->
+<img src="assets/metrics.languages.svg" height="165" alt="Most Used Languages" />
+<br><br>
+<img src="assets/metrics.achievements.svg" width="90%" alt="GitHub Achievements" />
+
+</div>
+
+---
+
+<div align="center">
+
+```console
+[TERMINAL CLOSED] :: THANKS FOR VISITING // KARTEYA REDDY ⚡
+```
+
+<sub>`01101011 01100001 01101110 01101110 01100001 00100000 01110010 01100101 01100100 01100100 01111001`</sub>
 
 </div>
