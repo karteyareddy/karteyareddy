@@ -7,7 +7,7 @@
 
 <!-- CYBER AVATAR -->
 <a href="https://github.com/karteyareddy">
-  <img src="assets/cyber_avatar.png" width="230" alt="Karteya Reddy Cyberpunk Avatar" style="border-radius: 50%; border: 3px solid #00F0FF; box-shadow: 0 0 25px rgba(0,240,255,0.6);" />
+  <img src="assets/cyber_avatar.png" width="240" alt="Karteya Reddy Cyberpunk Avatar" />
 </a>
 
 <br><br>
