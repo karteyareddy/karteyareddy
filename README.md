@@ -1,13 +1,8 @@
 <div align="center">
 
-<!-- HERO HUD HEADER -->
-<p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d1117,50:00f0ff,100:39d353&height=200&section=header&text=KARTEYA%20REDDY&fontSize=42&fontColor=ffffff&fontAlignY=35&desc=AI%20%2F%20ML%20%26%20FULL-STACK%20SOFTWARE%20ENGINEER&descAlignY=62&descSize=16" width="100%" alt="Header Banner" />
-</p>
-
-<!-- CYBER AVATAR -->
+<!-- BIG CLEAN PHOTO AVATAR -->
 <a href="https://github.com/karteyareddy">
-  <img src="assets/cyber_avatar.png" width="240" alt="Karteya Reddy Cyberpunk Avatar" />
+  <img src="assets/cyber_avatar.png" width="340" alt="Karteya Reddy Profile Photo" />
 </a>
 
 <br><br>
