@@ -1,6 +1,13 @@
 <div align="center">
 
-<!-- BIG CLEAN PHOTO AVATAR -->
+<!-- TOP HERO BANNER -->
+<p align="center">
+  <img src="assets/hero-banner.svg" width="100%" alt="Karteya Reddy Header Banner" />
+</p>
+
+<br>
+
+<!-- SQUARE PHOTO AVATAR WITH NEON BORDER -->
 <a href="https://github.com/karteyareddy">
   <img src="assets/cyber_avatar.png" width="340" alt="Karteya Reddy Profile Photo" />
 </a>
@@ -168,17 +175,6 @@ karteyareddy@cyberdeck:~$ ./whoami.sh --verbose --mode=full
 </td>
 </tr>
 </table>
-
-<sub>
-
-| ⚡ Project | 🛠️ Tech Stack | 📌 Overview |
-|---|---|---|
-| **[project-one](https://github.com/karteyareddy/project-one)** | `React` `Next.js` `Tailwind` | Full-stack web application with responsive UI & modern cloud backend. |
-| **[project-two](https://github.com/karteyareddy/project-two)** | `Python` `PyTorch` `AI` | Machine Learning intelligence engine & automated data pipeline. |
-| **[project-three](https://github.com/karteyareddy/project-three)** | `TypeScript` `Node.js` `Express` | High-throughput backend RESTful service & database layer. |
-| **[project-four](https://github.com/karteyareddy/project-four)** | `Python` `C++` `CLI` | Open-source developer tooling & command-line system suite. |
-
-</sub>
 
 </div>
 
