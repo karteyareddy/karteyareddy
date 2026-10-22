@@ -129,54 +129,7 @@ karteyareddy@cyberdeck:~$ ./whoami.sh --verbose --mode=full
 
 ---
 
-## 🚀 `~/selected-work` — FEATURED PROJECTS
 
-<div align="center">
-
-<table>
-<tr>
-<td width="50%">
-  <a href="https://github.com/karteyareddy/project-one">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="assets/card-project-one-dark.svg">
-      <source media="(prefers-color-scheme: light)" srcset="assets/card-project-one-light.svg">
-      <img src="assets/card-project-one-dark.svg" width="420" alt="project-one">
-    </picture>
-  </a>
-</td>
-<td width="50%">
-  <a href="https://github.com/karteyareddy/project-two">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="assets/card-project-two-dark.svg">
-      <source media="(prefers-color-scheme: light)" srcset="assets/card-project-two-light.svg">
-      <img src="assets/card-project-two-dark.svg" width="420" alt="project-two">
-    </picture>
-  </a>
-</td>
-</tr>
-<tr>
-<td width="50%">
-  <a href="https://github.com/karteyareddy/project-three">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="assets/card-project-three-dark.svg">
-      <source media="(prefers-color-scheme: light)" srcset="assets/card-project-three-light.svg">
-      <img src="assets/card-project-three-dark.svg" width="420" alt="project-three">
-    </picture>
-  </a>
-</td>
-<td width="50%">
-  <a href="https://github.com/karteyareddy/project-four">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="assets/card-project-four-dark.svg">
-      <source media="(prefers-color-scheme: light)" srcset="assets/card-project-four-light.svg">
-      <img src="assets/card-project-four-dark.svg" width="420" alt="project-four">
-    </picture>
-  </a>
-</td>
-</tr>
-</table>
-
-</div>
 
 ---
 
