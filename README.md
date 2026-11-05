@@ -1,182 +1,91 @@
-<div align="center">
-
-<!-- TOP HERO BANNER -->
-<p align="center">
-  <img src="assets/hero-banner.svg" width="100%" alt="Karteya Reddy Header Banner" />
-</p>
-
-<br>
-
-<!-- SQUARE PHOTO AVATAR WITH NEON BORDER -->
 <a href="https://github.com/karteyareddy">
-  <img src="assets/cyber_avatar.png" width="340" alt="Karteya Reddy Profile Photo" />
+  <picture><source media="(max-width: 700px)" srcset="assets/sp-hero-m.svg"><img src="assets/sp-hero.svg" width="100%" alt="Kristipati Karteya Reddy (Karthi): CSE, AI and ML student at KARE, class of 2028. I build AI that leaves the notebook." /></picture>
 </a>
 
-<br><br>
-
-<!-- ANIMATED TYPING BANNER -->
-<a href="https://github.com/karteyareddy">
-  <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=24&duration=2500&pause=800&color=00F0FF&center=true&vCenter=true&width=600&lines=System.init(%22Karteya+Reddy%22);AI+%26+Full-Stack+Software+Engineer;Architecting+Scalable+Intelligent+Systems;01101011+01100001+01101110+01110100" alt="Typing Banner" />
-</a>
-
-<br><br>
-
-<!-- CYBER HUD STATUS BADGES -->
 <p align="center">
-  <img src="https://img.shields.io/badge/SYSTEM-ONLINE-39D353?style=for-the-badge&logo=gnubash&logoColor=black" alt="Status Online" />
-  <img src="https://img.shields.io/badge/CORE-AI_%2B_FULLSTACK-00F0FF?style=for-the-badge&logo=python&logoColor=black" alt="Core Skill" />
-  <img src="https://img.shields.io/badge/LOCATION-EARTH%20//%20INDIA-FF007A?style=for-the-badge&logo=googlemaps&logoColor=white" alt="Location" />
+  <a href="https://www.linkedin.com/in/kristipati-karteya-reddy-947247136/">LinkedIn</a> &nbsp;·&nbsp;
+  <a href="mailto:reddykarteya@gmail.com">reddykarteya@gmail.com</a> &nbsp;·&nbsp;
+  <a href="#selected-work">Selected work</a>
 </p>
 
-<!-- SOCIAL BADGES -->
-<p align="center">
-  <a href="https://www.linkedin.com/in/kristipati-karteya-reddy-947247136/">
-    <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
-  </a>
-  <a href="mailto:reddykarteya@gmail.com">
-    <img src="https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" />
-  </a>
-  <a href="https://github.com/karteyareddy">
-    <img src="https://img.shields.io/badge/Portfolio-111111?style=for-the-badge&logo=vercel&logoColor=white" alt="Portfolio" />
-  </a>
-</p>
+<picture><source media="(max-width: 700px)" srcset="assets/sp-h-about-m.svg"><img src="assets/sp-h-about.svg" width="100%" alt="01 — About" /></picture>
 
-<!-- PROFILE VIEWS -->
-<p align="center">
-  <img src="https://komarev.com/ghpvc/?username=karteyareddy&style=flat-square&color=00f0ff&label=CYBER_VISITORS" alt="Profile Views" />
-</p>
+I'm Karthi, a Computer Science student specialising in **Artificial Intelligence & Machine Learning** at Kalasalingam Academy of Research and Education (class of 2028, CGPA 9.38).
 
-</div>
+The part of AI I like most comes after the notebook: wiring a model into something a person can open and trust. That has meant a sign-recognition model that knows when to defer to a human interpreter, a traffic optimiser that has to cope with fog and flooding, and a WhatsApp assistant that never sends without your approval.
 
----
+My work sits where **computer vision, language and learning systems** meet **full-stack engineering**: Python for the models, TypeScript and Next.js for the product, and Supabase or PostgreSQL underneath.
 
-## ⚡ `~/whoami.sh` — TERMINAL MATRIX
+<picture><source media="(max-width: 700px)" srcset="assets/sp-h-arsenal-m.svg"><img src="assets/sp-h-arsenal.svg" width="100%" alt="02 — Technology arsenal" /></picture>
 
-```console
-karteyareddy@cyberdeck:~$ ./whoami.sh --verbose --mode=full
-```
+<picture><source media="(max-width: 700px)" srcset="assets/sp-arsenal-m.svg"><img src="assets/sp-arsenal.svg" width="100%" alt="Languages: Python, TypeScript, JavaScript, Java, C. AI and ML: machine learning, deep learning, NLP, computer vision, MediaPipe, OpenCV, TensorFlow. Frontend: Next.js, React, Tailwind CSS, Framer Motion, HTML, CSS. Backend: Node.js, REST APIs, Django. Data and cloud: Supabase, PostgreSQL, Firebase, Oracle Cloud. Tools: Git, GitHub, VS Code, Streamlit, Linux." /></picture>
 
-```json
-{
-  "developer": "Karteya Reddy",
-  "title": "Software Engineer (AI / ML & Full-Stack)",
-  "mission": "Engineering intelligent, high-throughput systems at the edge of Web & Artificial Intelligence",
-  "active_stack": {
-    "languages": ["Python", "TypeScript", "JavaScript", "C++", "SQL"],
-    "frameworks": ["React", "Next.js", "Node.js", "Express", "TailwindCSS"],
-    "ai_ml": ["PyTorch", "TensorFlow", "OpenCV", "LLM Fine-tuning", "Neural Networks"],
-    "cloud_data": ["PostgreSQL", "MongoDB", "Docker", "Git / GitHub Actions"]
-  },
-  "status": "Architecting autonomous systems & full-stack web applications 🚀"
-}
-```
+<a id="selected-work"></a>
+<picture><source media="(max-width: 700px)" srcset="assets/sp-h-projects-m.svg"><img src="assets/sp-h-projects.svg" width="100%" alt="03 — Selected work" /></picture>
 
+<a href="https://github.com/karteyareddy/Q-TrafficX"><picture><source media="(max-width: 700px)" srcset="assets/sp-p-qtrafficx-m.svg"><img src="assets/sp-p-qtrafficx.svg" width="100%" alt="Q-TrafficX: weather-aware traffic digital twin optimised with QAOA on Qiskit Aer" /></picture></a>
+
+A simulated network of connected intersections. Rain, flooding, fog, accidents and emergency vehicles reshape traffic demand, and the system rebuilds signal timing as a QUBO problem on each update. That problem is solved with QAOA on a quantum simulator and compared against classical baselines. The repo includes the specs, test suite and an interactive 2D/3D visualiser.
+**[Repository →](https://github.com/karteyareddy/Q-TrafficX)**
+
+<a href="https://github.com/karteyareddy/ISL"><picture><source media="(max-width: 700px)" srcset="assets/sp-p-signbridge-m.svg"><img src="assets/sp-p-signbridge.svg" width="100%" alt="SignBridge India: Deaf-first Indian Sign Language accessibility network" /></picture></a>
+
+An accessibility network for hospitals, stations and service counters. A QR code at the counter opens phrase cards and offline service packs with no install. Hand and pose landmarks are extracted in the browser with MediaPipe, so frames never leave the device. A FastAPI model only answers above an 85% confidence threshold; below it, the user is routed to visual phrase selection or a human interpreter.
+**[Repository →](https://github.com/karteyareddy/ISL)**
+
+<a href="https://github.com/karteyareddy/Whatsapp_Bot"><picture><source media="(max-width: 700px)" srcset="assets/sp-p-replywise-m.svg"><img src="assets/sp-p-replywise.svg" width="100%" alt="ReplyWise Local: local-first WhatsApp CRM with AI-drafted replies and manual approval" /></picture></a>
+
+A local dashboard for WhatsApp that decides whether to reply, drafts what to say, and remembers context per contact. It falls back across Gemini, OpenRouter, Groq and a local provider, and every message waits for a human to approve it.
+**[Repository →](https://github.com/karteyareddy/Whatsapp_Bot)**
+
+#### Shipped and live
+
+- **BedCare Connect**: care-task tracking and live dashboards for families of bedridden patients, with Gemini summarising case sheets. Next.js · Supabase · Capacitor (Android). [Live](https://bed-care-connect.vercel.app) · [Code](https://github.com/karteyareddy/BedCare-Connect)
+- **Smart Campus Academic Hub**: timetables, free classrooms, professor schedules and study material in one place. React · Vite · Supabase. [Live](https://campus-hub-navigator.vercel.app) · [Code](https://github.com/karteyareddy/campus-hub-navigator)
+- **Prompt Engineering event platform**: team registration, payment-proof upload, admin verification and QR entry passes for a campus event. Next.js · Supabase · Three.js. [Live](https://promt-engineering-indol.vercel.app) · [Code](https://github.com/karteyareddy/promt-engineering)
+
+<details>
+<summary><b>More builds</b> (repositories not public yet)</summary>
 <br>
 
-- 🔭 **Currently Building**: Advanced AI / ML agents & scalable web platforms
-- 🌱 **Learning & Researching**: LLM architectures, distributed backend scaling, and Next.js 14 App Router
-- 💬 **Ask me about**: Full-stack web architecture, Python AI pipelines, and API performance optimization
-- ⚡ **Fun Fact**: *"I solve complex engineering problems for fun when algorithms refuse to cooperate."*
+- **AgriSmart**: IoT irrigation with ESP32/ESP8266, soil-moisture sensing, Firebase and automated pump control.
+- **LearnX**: AI learning platform with knowledge graphs, dynamic quizzes and personalised paths. Next.js · TypeScript · Supabase · Gemini API.
+- **EduCred**: digital credential verification using Django, PostgreSQL, JWT and hash-based credential checks.
+- **ScanoraAI** (concept): knee-MRI decision support with preprocessing, multi-label abnormality prediction, Grad-CAM explainability and AI-assisted reporting.
+- **Movie Genre Predictor**: NLP genre classification with TF-IDF and embeddings feeding classical ML classifiers.
 
----
+</details>
 
-## 🛠️ `~/toolbox` — TECH MATRIX
+<picture><source media="(max-width: 700px)" srcset="assets/sp-h-leadership-m.svg"><img src="assets/sp-h-leadership.svg" width="100%" alt="04 — Leadership and impact" /></picture>
 
-<div align="center">
+<picture><source media="(max-width: 700px)" srcset="assets/sp-impact-m.svg"><img src="assets/sp-impact.svg" width="100%" alt="9.38 CGPA; Machine Learning Head of the IEEE student branch; organised a hackathon with 500+ participants; organised a project expo with 250+ participants." /></picture>
 
-### 🧠 AI / ML & Data Science
-<img src="https://skillicons.dev/icons?i=python,cpp,html,css&perline=10" alt="AI Stack" />
+- **Machine Learning Head, IEEE.** I'm also involved with the IEEE Robotics and Automation Society.
+- **Hackathon organiser.** I organised a hackathon with 500+ student participants.
+- **Project Expo organiser.** I organised a project expo with 250+ participants.
+- I take part in hackathons, technical events and developer communities.
 
-### ⚡ Frontend & Web Architecture
-<img src="https://skillicons.dev/icons?i=js,ts,react,nextjs,tailwind,bootstrap,figma&perline=10" alt="Frontend Stack" />
+<picture><source media="(max-width: 700px)" srcset="assets/sp-h-telemetry-m.svg"><img src="assets/sp-h-telemetry.svg" width="100%" alt="05 — Signal from GitHub" /></picture>
 
-### 🛡️ Backend, Cloud & Databases
-<img src="https://skillicons.dev/icons?i=nodejs,express,postgres,mongodb,docker,git,github&perline=10" alt="Backend Stack" />
+<img src="assets/sp-telemetry.svg" width="100%" alt="GitHub activity panel: contributions in the last 12 months, streaks, active days and language mix across public repositories." />
 
-### 🛠️ Developer Ecosystem
-<img src="https://skillicons.dev/icons?i=vscode,powershell,linux,postman&perline=10" alt="Dev Tools" />
+<picture><source media="(max-width: 700px)" srcset="assets/sp-h-now-m.svg"><img src="assets/sp-h-now.svg" width="100%" alt="06 — Currently exploring" /></picture>
 
-</div>
-
----
-
-## 📊 `~/analytics` — SKILL RADAR & METRICS
-
-<div align="center">
-
-<table>
-<tr>
-<td width="50%" align="center" valign="middle">
-  <p align="center"><b>🎯 SELF-RATED SKILL RADAR</b></p>
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/radar-dark.svg">
-    <source media="(prefers-color-scheme: light)" srcset="assets/radar-light.svg">
-    <img src="assets/radar-dark.svg" width="400" alt="Skill Radar Chart">
-  </picture>
-</td>
-<td width="50%" align="center" valign="middle">
-  <p align="center"><b>📈 LIVE REPOSITORY LANGUAGE MIX</b></p>
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/radar-langs-dark.svg">
-    <source media="(prefers-color-scheme: light)" srcset="assets/radar-langs-light.svg">
-    <img src="assets/radar-langs-dark.svg" width="400" alt="Language Radar Chart">
-  </picture>
-</td>
-</tr>
-</table>
-
-</div>
-
----
-
-
-
----
-
-## 📈 `~/github-telemetry` — LIVE STATS & ACTIVITY
-
-<div align="center">
-
-<!-- 3D ISOMETRIC CALENDAR -->
-<p align="center">
-  <img src="assets/metrics.isocalendar.svg" width="92%" alt="3D Isometric Contribution Calendar" />
-</p>
-
-<br>
-
-<!-- CONTRIBUTION SNAKE ANIMATION -->
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/karteyareddy/karteyareddy/output/snake-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/karteyareddy/karteyareddy/output/snake.svg">
-  <img src="https://raw.githubusercontent.com/karteyareddy/karteyareddy/output/snake.svg" width="98%" alt="Contribution Graph Snake" />
-</picture>
-
-<br><br>
-
-<!-- GITHUB STATS CARD -->
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/card-stats-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="assets/card-stats-light.svg">
-  <img src="assets/card-stats-dark.svg" width="480" alt="GitHub Statistics Card">
-</picture>
-
-<br><br>
-
-<!-- LANGUAGE DISTRIBUTION & ACHIEVEMENTS -->
-<img src="assets/metrics.languages.svg" height="165" alt="Most Used Languages" />
-<br><br>
-<img src="assets/metrics.achievements.svg" width="90%" alt="GitHub Achievements" />
-
-</div>
-
----
-
-<div align="center">
-
-```console
-[TERMINAL CLOSED] :: THANKS FOR VISITING // KARTEYA REDDY ⚡
+```text
+agents         tool use, planning and evaluation for LLM agents that act and don't just chat
+deep learning  temporal models for sign and gesture sequences
+advanced ML    explainability, calibration, knowing when a model should abstain
+full-stack AI  shipping models behind real products: latency, cost, offline-first
 ```
 
-<sub>`01101011 01100001 01101110 01101110 01100001 00100000 01110010 01100101 01100100 01100100 01111001`</sub>
+<picture><source media="(max-width: 700px)" srcset="assets/sp-h-connect-m.svg"><img src="assets/sp-h-connect.svg" width="100%" alt="07 — Connect" /></picture>
 
-</div>
+Open to internships, research collaborations and hackathon teams, especially anything involving AI products with real users.
+
+<p>
+  <a href="https://www.linkedin.com/in/kristipati-karteya-reddy-947247136/"><img src="assets/sp-link-linkedin.svg" height="48" alt="LinkedIn" /></a>&nbsp;
+  <a href="mailto:reddykarteya@gmail.com"><img src="assets/sp-link-email.svg" height="48" alt="Email reddykarteya@gmail.com" /></a>&nbsp;
+  <a href="https://github.com/karteyareddy?tab=repositories"><img src="assets/sp-link-github.svg" height="48" alt="GitHub repositories" /></a>
+</p>
+
+<picture><source media="(max-width: 700px)" srcset="assets/sp-end-m.svg"><img src="assets/sp-end.svg" width="100%" alt="Still training. Always shipping." /></picture>
