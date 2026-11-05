@@ -83,7 +83,7 @@ A local dashboard for WhatsApp that decides whether to reply, drafts what to say
 **Achievements**
 
 - **Top 30, Quantexa Hackathon** for Q-TrafficX, the quantum-inspired traffic simulation.
-- **Runner-up, CIH26 Hackathon**, recognised for competitive project development.
+- **Runner-up, CIH26 Hackathon**, recognised for competitive project development. Built with a joint team, so the code lives in their repository.
 - **IEEE Xtreme 20.0 Student Branch Ambassador**, promoting the 24-hour programming competition on campus.
 
 **Education**
