@@ -16,7 +16,7 @@ import urllib.request
 from collections import defaultdict
 from xml.sax.saxutils import escape
 
-from identity import C, P, grad, panel, svg, fx_defs, aurora, neon_text, comet, set_theme
+from identity import C, P, grad, panel, svg, fx_defs, aurora, neon_text, comet, set_theme, odometer, decode, code_rain
 
 SKIP_LANGS = {"HTML", "CSS", "Dockerfile", "Makefile", "Shell", "Batchfile", "Procfile", "PowerShell"}
 def lang_colors():
@@ -109,16 +109,20 @@ def draw(user, days, langs, repo_count):
              second,
              (str(longest), "day streak", "longest this year"),
              (str(active), "active days", "last 12 months")]
-    body = panel(W, H) + aurora(W, H, seed=41, strength=.7, stars=18)
+    body = panel(W, H) + aurora(W, H, seed=41, strength=.7, stars=18) + code_rain(W, H, seed=43, cols=10)
+    defs = (fx_defs(W, H) + grad("g", 56, 1144, flow=True) + grad("gf", 40, 420, fade=True)
+            + f'<linearGradient id="ga" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{P["blue"]}" stop-opacity=".32"/>'
+              f'<stop offset="1" stop-color="{P["violet"]}" stop-opacity="0"/></linearGradient>')
     cw = (W - 112) / 4
     for k, (v, l, s) in enumerate(stats):
         x = 56 + k * cw
         if k:
             body += f'<path d="M{x-20:.0f} 50 V150" stroke="{C["edge"]}"/>'
-        body += (f'<g class="up" style="animation-delay:{k * .15:.2f}s">'
-                 + neon_text(f"{x:.0f}", 104, v, 54, fill="url(#g)")
-                 + f'<text x="{x:.0f}" y="134" class="s" font-size="18" fill="{C["text"]}">{l}</text>'
-                 f'<text x="{x:.0f}" y="157" class="s" font-size="15" fill="{C["dim"]}">{escape(s)}</text></g>')
+        num, nd = odometer(f"{x:.0f}", 104, v, 54, begin=.3 + k * .2, uid=f"od{k}_")
+        defs += nd
+        body += (num + f'<g class="up" style="animation-delay:{k * .15:.2f}s">'
+                 f'<text x="{x:.0f}" y="134" class="s" font-size="18" fill="{C["text"]}">{l}</text></g>'
+                 + decode(f"{x:.0f}", 157, s, 15, cls="s", delay=.6 + k * .15))
 
     # weekly signal: the calendar collapsed into one waveform
     dates = list(days)
@@ -128,13 +132,15 @@ def draw(user, days, langs, repo_count):
     step = (x1 - x0) / max(len(weeks) - 1, 1)
     pts = [(x0 + i * step, base - (w / peak) * (base - top)) for i, w in enumerate(weeks)]
     line = smooth(pts)
-    body += (f'<text x="56" y="196" class="m" font-size="14" letter-spacing="3" fill="{C["cyan"]}" font-weight="700">WEEKLY SIGNAL</text>'
-             f'<text x="1144" y="196" class="m" font-size="13" fill="{C["dim"]}" text-anchor="end">peak week · {peak}</text>'
+    body += (decode(56, 196, "WEEKLY SIGNAL", 14, fill=C["cyan"], extra=' letter-spacing="3" font-weight="700"', delay=.8)
+             + f'<text x="1144" y="196" class="m" font-size="13" fill="{C["dim"]}" text-anchor="end">peak week · {peak}</text>'
              f'<path d="M56 {base} H1144" stroke="{C["edge"]}"/>'
              f'<path d="{line} L{x1} {base} L{x0} {base} Z" fill="url(#ga)"/>'
              f'<path d="{line}" fill="none" stroke="url(#g)" stroke-width="9" stroke-linejoin="round" class="trace" opacity=".35" filter="url(#soft)"/>'
              f'<path d="{line}" fill="none" stroke="url(#g)" stroke-width="2.5" stroke-linejoin="round" class="trace"/>'
-             + comet(line, dur="9s", begin="2.6s") + comet(line, dur="9s", begin="7s", color=P["cyan"], r=3))
+             + comet(line, dur="9s", begin="2.6s", r=5) + comet(line, dur="9s", begin="2.72s", r=3.5)
+             + comet(line, dur="9s", begin="2.84s", r=2.4) + comet(line, dur="9s", begin="2.96s", r=1.6)
+             + comet(line, dur="9s", begin="7s", color=P["cyan"], r=3))
     last = None
     for i in range(0, len(dates), 7):
         m = dates[i].strftime("%b")
@@ -144,8 +150,8 @@ def draw(user, days, langs, repo_count):
 
     # languages
     y = 420
-    body += (f'<text x="56" y="{y}" class="m" font-size="14" letter-spacing="3" fill="{C["cyan"]}" font-weight="700">LANGUAGES</text>'
-             f'<text x="1144" y="{y}" class="m" font-size="13" fill="{C["dim"]}" text-anchor="end">by bytes · markup excluded</text>')
+    body += (decode(56, y, "LANGUAGES", 14, fill=C["cyan"], extra=' letter-spacing="3" font-weight="700"', delay=1.1)
+             + f'<text x="1144" y="{y}" class="m" font-size="13" fill="{C["dim"]}" text-anchor="end">by bytes · markup excluded</text>')
     x, bw = 56.0, 1088
     bar = ""
     for k, (name, frac) in enumerate(langs):
@@ -170,9 +176,6 @@ def draw(user, days, langs, repo_count):
         lx += wlab + 14
     body += (f'<text x="1144" y="{H-22}" class="m" font-size="12" fill="{C["dim"]}" text-anchor="end">'
              f'public data · refreshed {dt.date.today():%d %b %Y}</text>')
-    defs = (fx_defs(W, H) + grad("g", 56, 1144, flow=True) + grad("gf", 40, 420, fade=True)
-            + f'<linearGradient id="ga" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{P["blue"]}" stop-opacity=".32"/>'
-              f'<stop offset="1" stop-color="{P["violet"]}" stop-opacity="0"/></linearGradient>')
     # offset lives only in the keyframe, so with motion disabled the line is simply drawn
     css = ".trace{stroke-dasharray:3000;animation:draw 2.6s ease-out both}@keyframes draw{from{stroke-dashoffset:3000}to{stroke-dashoffset:0}}"
     alt = (f"GitHub activity for {user}: {total} contributions in the last 12 months, current streak {cur} days, "
