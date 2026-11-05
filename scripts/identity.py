@@ -365,53 +365,67 @@ def heartbeat(x, y, w):
 # --------------------------------------------------------------------------- #
 # Hero
 # --------------------------------------------------------------------------- #
+def display_name(x, y, line, size, fill, delay=.3, ls="2"):
+    """Giant display caps: blurred glow, offset outline, the fill assembling letter by letter, glitch copies."""
+    a = f'class="s" font-size="{size}" font-weight="900" letter-spacing="{ls}"'
+    return (f'<text x="{x}" y="{y}" {a} fill="url(#g)" filter="url(#soft)" opacity=".85">{escape(line)}</text>'
+            f'<text x="{x + 5}" y="{y + 5}" {a} fill="none" stroke="url(#g)" stroke-width="1.5" opacity=".55">{escape(line)}</text>'
+            f'<g class="glm"><text x="{x}" y="{y}" {a} fill="{fill}">{letters(line, base=delay, step=.06)}</text></g>'
+            + glitch(x, y, escape(line), size, weight=900, ls=ls))
+
+
+def ignite(W, H):
+    """Boot sequence: the panel border draws itself and one bright scanline sweeps down."""
+    per = 2 * (W + H)
+    return (f'<rect x="1.5" y="1.5" width="{W - 3}" height="{H - 3}" rx="17" fill="none" stroke="url(#g)" stroke-width="2" '
+            f'stroke-dasharray="{per}" stroke-dashoffset="{per}" class="draw" style="animation-duration:2.4s"/>'
+            f'<g clip-path="url(#pc)"><rect x="0" y="-6" width="{W}" height="3" fill="{C["ink"]}" opacity=".7" filter="url(#ng)" class="boot"/></g>')
+
+
 def hero(d):
-    W, H = 1200, 460
+    W, H = 1200, 540
     p, stages = d["person"], d["pipeline"]
-    trace = "M56 372 H236 L258 350 H516 L538 372 H796 L818 350 H1144"
-    node_xy = [(176, 372), (420, 350), (690, 372), (970, 350)]
+    l1, l2 = p.get("name_display", [p["name_main"].upper(), ""])
+    trace = "M56 446 H1144"
+    node_x = [200, 470, 740, 1010]
     nodes = ""
-    for i, ((x, y), st) in enumerate(zip(node_xy, stages)):
-        up = y == 350
-        ly, cy = (y - 30, y - 52) if up else (y + 44, y + 66)
+    for i, (x, st) in enumerate(zip(node_x, stages)):
         col = [P["cyan"], P["blue"], P["violet"], P["pink"]][i]
-        nodes += node(x, y, delay=i * 1.1, color=col)
-        nodes += (decode(x, ly, st["verb"], 15, fill=col, extra=' letter-spacing="3" text-anchor="middle" font-weight="700"', delay=1.2 + i * .25)
+        nodes += node(x, 446, delay=i * 1.1, color=col)
+        nodes += (decode(x, 487, st["verb"], 15, fill=col, extra=' letter-spacing="3" text-anchor="middle" font-weight="700"', delay=1.2 + i * .25)
                   + f'<g class="up" style="animation-delay:{1.4 + i * .25:.2f}s">'
-                  f'<text x="{x}" y="{cy}" class="s" font-size="15" fill="{C["dim"]}" text-anchor="middle">{escape(st["with"])}</text></g>')
-    tag, tag_clip = typewriter(56, 218, p["tagline_a"], p["tagline_b"], 32)
-    fl, fl_defs = floor(W, H, 300)
-    name_lead_w = tw(p["name_lead"] + " ", 62)
+                  f'<text x="{x}" y="509" class="s" font-size="15" fill="{C["dim"]}" text-anchor="middle">{escape(st["with"])}</text></g>')
+    tag, tag_clip = typewriter(56, 346, p["tagline_a"], p["tagline_b"], 30)
+    fl, fl_defs = floor(W, H, 392, opacity=.18)
     body = (
-        panel(W, H) + aurora(W, H, seed=7) + code_rain(W, H, seed=5, cols=14) + fl
-        + f'<g class="up"><text x="56" y="76" class="m" font-size="15" letter-spacing="3" fill="{C["dim"]}">'
-          f'<tspan fill="{C["cyan"]}" font-weight="700">{escape(p["handle"].upper())}</tspan>'
-          f'<tspan dx="14">/</tspan></text></g>'
-        + decode(56 + tw(p["handle"] + " / ", 15, mono=True) + 14, 76, p["eyebrow"].upper(), 15, extra=' letter-spacing="3"', delay=.3)
+        panel(W, H) + aurora(W, H, seed=7) + code_rain(W, H, seed=5, cols=14) + fl + ignite(W, H)
+        + f'<g class="up"><text x="56" y="70" class="m" font-size="15" letter-spacing="3" fill="{C["dim"]}">'
+          f'<tspan fill="{C["cyan"]}" font-weight="700">{escape(p["handle"].upper())}</tspan><tspan dx="14">/</tspan></text></g>'
+        + decode(56 + tw(p["handle"] + " / ", 15, mono=True) + 14, 70, p["eyebrow"].upper(), 15, extra=' letter-spacing="3"', delay=.3)
         + f'<g class="up" style="animation-delay:.3s">'
-          f'<rect x="896" y="52" width="248" height="36" rx="18" fill="{C["chip"]}" stroke="{C["edge2"]}"/>'
-          f'<circle cx="918" cy="70" r="9" fill="none" stroke="{C["cyan"]}" class="ring"/>'
-          f'<circle cx="918" cy="70" r="5" fill="{C["cyan"]}" class="blink" filter="url(#ng)"/>'
-          f'<text x="934" y="75.5" class="m" font-size="14" fill="{C["muted"]}">{escape(p["status"])}</text></g>'
-        + reactor(1060, 190, k=.92)
-        + f'<g class="up" style="animation-delay:.2s"><g class="glm">'
-        + neon_text(54, 158, f'<tspan font-weight="400" fill="{C["lead"]}" class="lead">{escape(p["name_lead"])} </tspan>{letters(p["name_main"])}', 62)
-        + '</g></g>'
-        + glitch(54 + name_lead_w, 158, escape(p["name_main"]), 62)
+          f'<rect x="896" y="46" width="248" height="36" rx="18" fill="{C["chip"]}" stroke="{C["edge2"]}"/>'
+          f'<circle cx="918" cy="64" r="9" fill="none" stroke="{C["cyan"]}" class="ring"/>'
+          f'<circle cx="918" cy="64" r="5" fill="{C["cyan"]}" class="blink" filter="url(#ng)"/>'
+          f'<text x="934" y="69.5" class="m" font-size="14" fill="{C["muted"]}">{escape(p["status"])}</text></g>'
+        + reactor(1010, 236, k=1.25)
+        + decode(58, 112, p["name_lead"].upper(), 17, fill=C["lead"], extra=' letter-spacing="8" font-weight="700"', delay=.2)
+        + f'<g class="up" style="animation-delay:.2s">' + display_name(52, 206, l1, 96, C["text"], delay=.35) + '</g>'
+        + f'<g class="up" style="animation-delay:.35s">' + display_name(52, 296, l2, 96, "url(#g)", delay=.75) + '</g>'
         + tag
-        + f'<g class="up" style="animation-delay:1s"><text x="56" y="258" class="s" font-size="19" fill="{C["muted"]}">{escape(p["subline"])}</text></g>'
+        + f'<g class="up" style="animation-delay:1.2s"><text x="56" y="382" class="s" font-size="18" fill="{C["muted"]}">{escape(p["subline"])}</text></g>'
         + f'<path d="{trace}" fill="none" stroke="{C["edge2"]}" stroke-width="2"/>'
         + f'<path d="{trace}" fill="none" stroke="url(#g)" stroke-width="2.5" stroke-linecap="round" class="pulse"/>'
         + f'<path d="{trace}" fill="none" stroke="url(#g)" stroke-width="8" stroke-linecap="round" class="pulse" opacity=".35" filter="url(#soft)"/>'
         + comet(trace, r=5) + comet(trace, begin=".1s", r=3.5) + comet(trace, begin=".2s", r=2.2)
         + comet(trace, dur="5.5s", begin="2.7s", color=P["cyan"], r=3)
-        + f'<circle cx="56" cy="372" r="4" fill="{C["dim"]}"/>'
-        + f'<path d="M1144 362 l12 10 l-12 10" fill="none" stroke="{P["pink"]}" stroke-width="2.5" filter="url(#ng)"/>'
+        + f'<circle cx="56" cy="446" r="4" fill="{C["dim"]}"/>'
+        + f'<path d="M1144 436 l12 10 l-12 10" fill="none" stroke="{P["pink"]}" stroke-width="2.5" filter="url(#ng)"/>'
         + nodes
     )
-    defs = (fx_defs(W, H) + grad("g", 56, 1144, flow=True) + grad("gf", 40, 420, fade=True) + grad("gt", 300, 760, flow=True) + tag_clip + fl_defs)
+    defs = (fx_defs(W, H) + grad("g", 52, 1144, flow=True) + grad("gf", 40, 420, fade=True) + grad("gt", 300, 760, flow=True) + tag_clip + fl_defs)
     css = (".pulse{stroke-dasharray:150 1150;stroke-dashoffset:1300;animation:run 5.5s linear infinite}"
-           "@keyframes run{to{stroke-dashoffset:0}}")
+           "@keyframes run{to{stroke-dashoffset:0}}"
+           f".boot{{animation:boot 1.6s cubic-bezier(.2,.7,.2,1) .2s forwards}}@keyframes boot{{to{{transform:translateY({H + 12}px)}}}}")
     title = f'{p["full_name"]} — {p["eyebrow"]}. {p["tagline_a"]} {p["tagline_b"]}'
     return svg(W, H, title, body, defs, css)
 
@@ -685,7 +699,41 @@ def art_mri():
     return s, css
 
 
-ART = {"traffic": art_traffic, "hand": art_hand, "chat": art_chat, "graph": art_graph, "mri": art_mri}
+def art_care():
+    """BedCare Connect: a caretaker's phone with live vitals, tasks ticking off, and a Gemini summary."""
+    hb = "M806 96 H842 l5 -12 l5 24 l5 -18 l3 6 H900 l4 -9 l5 18 l5 -14 l3 5 H960"
+    s = (f'<rect x="792" y="50" width="186" height="246" rx="18" fill="{C["chip"]}" stroke="{C["edge2"]}"/>'
+         f'<rect x="850" y="58" width="70" height="5" rx="2.5" fill="{C["edge2"]}"/>'
+         f'<text x="806" y="82" class="m" font-size="11" letter-spacing="2" fill="{C["dim"]}">VITALS · LIVE</text>'
+         f'<path d="{hb}" fill="none" stroke="{C["edge2"]}" stroke-width="1.5"/>'
+         f'<path d="{hb}" fill="none" stroke="{P["pink"]}" stroke-width="2" stroke-linecap="round" class="hb"/>'
+         f'<text x="806" y="132" class="m" font-size="11" letter-spacing="2" fill="{C["dim"]}">TODAY</text>')
+    for k, (t, task) in enumerate((("08:00", "Medication"), ("10:30", "Turn & reposition"), ("13:00", "Physio session"))):
+        y = 152 + k * 40
+        s += (f'<rect x="806" y="{y - 11}" width="18" height="18" rx="5" fill="none" stroke="{C["edge2"]}" stroke-width="1.5"/>'
+              f'<rect x="806" y="{y - 11}" width="18" height="18" rx="5" fill="url(#ga)" class="tk" style="animation-delay:{k * 2:.0f}s"/>'
+              f'<path d="M810 {y - 2} l4 4 l7 -8" fill="none" stroke="{C["bg"]}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="tk" style="animation-delay:{k * 2:.0f}s"/>'
+              f'<text x="834" y="{y + 4}" class="m" font-size="11" fill="{C["dim"]}">{t}</text>'
+              f'<text x="876" y="{y + 4}" class="s" font-size="13" fill="{C["text"]}">{escape(task)}</text>')
+    s += (f'<rect x="806" y="262" width="158" height="22" rx="11" fill="none" stroke="url(#ga)" stroke-width="1.2" class="draft"/>'
+          f'<text x="885" y="277" class="m" font-size="11" fill="{P["cyan"]}" text-anchor="middle" letter-spacing="1">FAMILY VIEW · SYNCED</text>')
+    s += (f'<rect x="1000" y="92" width="150" height="112" rx="14" fill="{C["chip"]}" stroke="{C["edge2"]}"/>'
+          f'<circle cx="1016" cy="110" r="5" fill="url(#ga)" filter="url(#ng)" class="core"/>'
+          f'<text x="1028" y="114" class="m" font-size="11" letter-spacing="2" fill="{P["cyan"]}">GEMINI SUMMARY</text>'
+          '<clipPath id="gs"><rect x="1000" y="120" width="0" height="80">'
+          '<animate attributeName="width" values="0;0;150;150;0" keyTimes="0;.15;.45;.92;1" dur="9s" repeatCount="indefinite"/></rect></clipPath>'
+          '<g clip-path="url(#gs)">'
+          f'<text x="1014" y="140" class="s" font-size="12" fill="{C["muted"]}">Case sheet: post-op day 6.</text>'
+          f'<text x="1014" y="158" class="s" font-size="12" fill="{C["muted"]}">BP stable, mild swelling.</text>'
+          f'<text x="1014" y="176" class="s" font-size="12" fill="{C["muted"]}">Next: physio at 13:00.</text>'
+          f'<text x="1014" y="194" class="s" font-size="12" fill="{P["amber"]}">Flag swelling to doctor</text></g>'
+          f'<text x="1150" y="306" class="m" font-size="13" fill="{C["dim"]}" text-anchor="end">web + Android · live</text>')
+    css = (".tk{opacity:0;animation:tk 6s steps(1) infinite}@keyframes tk{0%{opacity:0}20%,92%{opacity:1}100%{opacity:0}}"
+           ".draft{animation:dash 6s linear infinite}@keyframes dash{to{stroke-dashoffset:-110}}")
+    return s, css
+
+
+ART = {"traffic": art_traffic, "hand": art_hand, "chat": art_chat, "graph": art_graph, "mri": art_mri, "care": art_care}
 
 
 def plate(i, pr):
@@ -817,9 +865,10 @@ def closing(d, W=1200):
 def hero_m(d):
     W = 600
     p, stages = d["person"], d["pipeline"]
+    l1, l2 = p.get("name_display", [p["name_main"].upper(), ""])
     sub = wrap(p["subline"], 21, 520)
-    y_sub = 330
-    top = y_sub + 30 * len(sub) + 40
+    y_sub = 400
+    top = y_sub + 30 * len(sub) + 44
     gap = 86
     trace_end = top + gap * (len(stages) - 1)
     H = trace_end + 70
@@ -833,19 +882,19 @@ def hero_m(d):
                   f'<text x="92" y="{y + 22}" class="s" font-size="19" fill="{C["dim"]}">{escape(st["with"])}</text></g>')
     trace = f"M56 {top - 30} V{trace_end + 30}"
     tb1, tb2 = p["tagline_b"].split()[0], " ".join(p["tagline_b"].split()[1:])
-    body = (panel(W, H) + aurora(W, H, seed=7, stars=16) + code_rain(W, H, seed=5, cols=7)
-            + f'<g class="up"><text x="40" y="70" class="m" font-size="17" letter-spacing="3" fill="{C["cyan"]}" font-weight="700">{escape(p["handle"].upper())}</text></g>'
-            + decode(40, 98, p["eyebrow"].upper(), 16, extra=' letter-spacing="2"', delay=.3)
-            + f'<g class="up" style="animation-delay:.15s"><text x="38" y="168" class="s" font-size="50" font-weight="400" fill="{C["lead"]}">{escape(p["name_lead"])}</text></g>'
-            + f'<g class="up" style="animation-delay:.3s"><g class="glm">' + neon_text(38, 224, letters(p["name_main"]), 54) + '</g></g>'
-            + glitch(38, 224, escape(p["name_main"]), 54)
-            + reactor(470, top + (trace_end - top) / 2, k=.72)
-            + f'<g class="up" style="animation-delay:.6s"><text x="40" y="276" class="s" font-size="30" font-weight="600" fill="{C["text"]}">{escape(p["tagline_a"])} '
+    body = (panel(W, H) + aurora(W, H, seed=7, stars=16) + code_rain(W, H, seed=5, cols=7) + ignite(W, H)
+            + f'<g class="up"><text x="40" y="66" class="m" font-size="17" letter-spacing="3" fill="{C["cyan"]}" font-weight="700">{escape(p["handle"].upper())}</text></g>'
+            + decode(40, 92, p["eyebrow"].upper(), 13, extra=' letter-spacing="2"', delay=.3)
+            + decode(42, 136, p["name_lead"].upper(), 15, fill=C["lead"], extra=' letter-spacing="7" font-weight="700"', delay=.2)
+            + f'<g class="up" style="animation-delay:.2s">' + display_name(38, 214, l1, 78, C["text"], delay=.35) + '</g>'
+            + f'<g class="up" style="animation-delay:.35s">' + display_name(38, 290, l2, 78, "url(#g)", delay=.7) + '</g>'
+            + f'<g class="up" style="animation-delay:.9s"><text x="40" y="344" class="s" font-size="30" font-weight="600" fill="{C["text"]}">{escape(p["tagline_a"])} '
               f'<tspan fill="url(#gt)">{escape(tb1)}</tspan></text>'
-            + f'<text x="40" y="312" class="s" font-size="30" font-weight="600" fill="url(#gt)">{escape(tb2)}</text></g>'
-            + f'<g class="up" style="animation-delay:.9s">'
+            + f'<text x="40" y="380" class="s" font-size="30" font-weight="600" fill="url(#gt)">{escape(tb2)}</text></g>'
+            + f'<g class="up" style="animation-delay:1.1s">'
             + "".join(f'<text x="40" y="{y_sub + 24 + k*30}" class="s" font-size="21" fill="{C["muted"]}">{escape(l)}</text>' for k, l in enumerate(sub))
             + '</g>'
+            + reactor(470, top + (trace_end - top) / 2, k=.72)
             + f'<path d="{trace}" stroke="{C["edge2"]}" stroke-width="2"/>'
             + f'<path d="{trace}" stroke="url(#gy)" stroke-width="2.5" stroke-linecap="round" class="pulse"/>'
             + f'<path d="{trace}" stroke="url(#gy)" stroke-width="8" stroke-linecap="round" class="pulse" opacity=".35" filter="url(#soft)"/>'
@@ -856,7 +905,8 @@ def hero_m(d):
     defs = (fx_defs(W, H) + grad("g", 38, 560, flow=True) + grad("gf", 40, 420, fade=True) + grad("gt", 40, 420, flow=True)
             + f'<linearGradient id="gy" gradientUnits="userSpaceOnUse" x1="0" y1="{top-30}" x2="0" y2="{trace_end+30}">{stops}</linearGradient>')
     css = (f".pulse{{stroke-dasharray:70 {L+70};animation:run 5s linear infinite}}"
-           f"@keyframes run{{from{{stroke-dashoffset:{L+70}}}to{{stroke-dashoffset:0}}}}")
+           f"@keyframes run{{from{{stroke-dashoffset:{L+70}}}to{{stroke-dashoffset:0}}}}"
+           f".boot{{animation:boot 1.6s cubic-bezier(.2,.7,.2,1) .2s forwards}}@keyframes boot{{to{{transform:translateY({H + 12}px)}}}}")
     return svg(W, H, f'{p["full_name"]} — {p["eyebrow"]}. {p["tagline_a"]} {p["tagline_b"]}', body, defs, css)
 
 

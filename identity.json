@@ -5,43 +5,195 @@
     "name_lead": "Kristipati",
     "name_main": "Karteya Reddy",
     "handle": "Karthi",
-    "eyebrow": "CSE · AI & ML · KARE '28",
+    "eyebrow": "CSE · AI & ML · KARE '28 · Treasurer, IEEE RAS",
     "status": "exploring · AI agents",
     "tagline_a": "I build AI that",
     "tagline_b": "leaves the notebook.",
-    "subline": "Computer vision, language and learning systems, wired into full-stack products people can actually use."
+    "subline": "Computer vision, language and learning systems, wired into full-stack products people can actually use.",
+    "name_display": [
+      "KARTEYA",
+      "REDDY"
+    ]
   },
   "pipeline": [
-    {"verb": "SEE", "with": "OpenCV · MediaPipe"},
-    {"verb": "UNDERSTAND", "with": "NLP · embeddings"},
-    {"verb": "DECIDE", "with": "ML · deep learning"},
-    {"verb": "SHIP", "with": "Next.js · Supabase · Django"}
+    {
+      "verb": "SEE",
+      "with": "OpenCV · MediaPipe"
+    },
+    {
+      "verb": "UNDERSTAND",
+      "with": "NLP · embeddings"
+    },
+    {
+      "verb": "DECIDE",
+      "with": "ML · deep learning"
+    },
+    {
+      "verb": "SHIP",
+      "with": "Next.js · Supabase · Django"
+    }
   ],
   "sections": [
-    ["about", "About", "~/about"],
-    ["arsenal", "Technology arsenal", "~/stack"],
-    ["projects", "Selected work", "~/projects"],
-    ["leadership", "Leadership & impact", "~/ieee"],
-    ["telemetry", "Signal from GitHub", "~/telemetry"],
-    ["now", "Currently exploring", "~/now"],
-    ["connect", "Connect", "~/contact"]
+    [
+      "about",
+      "About",
+      "~/about"
+    ],
+    [
+      "arsenal",
+      "Technology arsenal",
+      "~/stack"
+    ],
+    [
+      "projects",
+      "Selected work",
+      "~/projects"
+    ],
+    [
+      "leadership",
+      "Experience & achievements",
+      "~/ieee"
+    ],
+    [
+      "telemetry",
+      "Signal from GitHub",
+      "~/telemetry"
+    ],
+    [
+      "now",
+      "Currently exploring",
+      "~/now"
+    ],
+    [
+      "connect",
+      "Connect",
+      "~/contact"
+    ]
   ],
   "arsenal": [
-    {"label": "Languages", "note": "daily drivers first", "items": ["*Python", "*TypeScript", "*JavaScript", "Java", "C"]},
-    {"label": "AI / ML", "note": "models and perception", "items": ["Machine Learning", "Deep Learning", "NLP", "*Computer Vision", "*MediaPipe", "OpenCV", "TensorFlow"]},
-    {"label": "Frontend", "note": "interfaces", "items": ["*Next.js", "*React", "*Tailwind CSS", "*Framer Motion", "HTML", "CSS"]},
-    {"label": "Backend", "note": "services and APIs", "items": ["*Node.js", "*REST APIs", "Django"]},
-    {"label": "Data & cloud", "note": "storage and hosting", "items": ["*Supabase", "*PostgreSQL", "Firebase", "Oracle Cloud"]},
-    {"label": "Tools", "note": "workflow", "items": ["*Git", "*GitHub", "VS Code", "Streamlit", "Linux"]}
+    {
+      "label": "Languages",
+      "note": "daily drivers first",
+      "items": [
+        "*Python",
+        "*TypeScript",
+        "*JavaScript",
+        "*SQL",
+        "Java",
+        "C"
+      ]
+    },
+    {
+      "label": "AI / ML",
+      "note": "models and perception",
+      "items": [
+        "*PyTorch",
+        "TensorFlow",
+        "Keras",
+        "scikit-learn",
+        "*Computer Vision",
+        "*MediaPipe",
+        "OpenCV",
+        "NLP",
+        "Deep Learning"
+      ]
+    },
+    {
+      "label": "Frontend",
+      "note": "interfaces",
+      "items": [
+        "*Next.js",
+        "*React",
+        "*Tailwind CSS",
+        "*Framer Motion",
+        "HTML",
+        "CSS"
+      ]
+    },
+    {
+      "label": "Backend",
+      "note": "services and APIs",
+      "items": [
+        "*Node.js",
+        "*Express",
+        "*FastAPI",
+        "*REST APIs",
+        "Django",
+        "Streamlit"
+      ]
+    },
+    {
+      "label": "Data & cloud",
+      "note": "storage and hosting",
+      "items": [
+        "*Supabase",
+        "*PostgreSQL",
+        "Firebase",
+        "Oracle Cloud",
+        "*Docker"
+      ]
+    },
+    {
+      "label": "Quantum",
+      "note": "hackathon track",
+      "items": [
+        "*Qiskit",
+        "*QAOA / QUBO"
+      ]
+    },
+    {
+      "label": "Tools",
+      "note": "workflow",
+      "items": [
+        "*Git",
+        "*GitHub",
+        "VS Code",
+        "Linux"
+      ]
+    }
   ],
   "projects": [
     {
       "slug": "qtrafficx",
       "art": "traffic",
       "name": "Q-TrafficX",
-      "kicker": "Quantum × urban mobility",
-      "pitch": "A weather-aware traffic digital twin that turns signal timing into QUBO problems and solves them with QAOA, benchmarked against classical solvers.",
-      "stack": ["Python", "Qiskit Aer", "FastAPI", "NetworkX", "Next.js"]
+      "kicker": "Top 30 · Quantexa Hackathon",
+      "pitch": "A weather-aware traffic digital twin for a 6-intersection network: signal timing and routing become QUBO problems solved with hybrid QAOA. 181 passing tests.",
+      "stack": [
+        "Python",
+        "Qiskit Aer",
+        "FastAPI",
+        "NetworkX",
+        "Next.js"
+      ]
+    },
+    {
+      "slug": "scanoraai",
+      "art": "mri",
+      "name": "ScanoraAI",
+      "kicker": "Vision × healthcare",
+      "pitch": "Knee-MRI screening with a ResNet18 multi-label classifier (12 labels): 94.1% accuracy, 86.5% macro F1, 96.8% mean ROC-AUC, plus camera-based kinematic analysis.",
+      "stack": [
+        "Python",
+        "PyTorch",
+        "ResNet18",
+        "Computer Vision",
+        "Streamlit"
+      ]
+    },
+    {
+      "slug": "learnx",
+      "art": "graph",
+      "name": "LearnX",
+      "kicker": "AI × education",
+      "pitch": "An AI learning platform: dynamic subject creation, interactive knowledge graphs, Gemini-powered help, and revision with flashcards and spaced repetition.",
+      "stack": [
+        "Next.js",
+        "TypeScript",
+        "Node.js",
+        "Supabase",
+        "Gemini API"
+      ]
     },
     {
       "slug": "signbridge",
@@ -49,7 +201,27 @@
       "name": "SignBridge India",
       "kicker": "Accessibility × vision",
       "pitch": "A Deaf-first Indian Sign Language network: QR access points, offline phrase packs, and sign recognition that hands off to a human when confidence drops.",
-      "stack": ["Next.js", "MediaPipe", "FastAPI", "PyTorch", "Supabase"]
+      "stack": [
+        "Next.js",
+        "MediaPipe",
+        "FastAPI",
+        "PyTorch",
+        "Supabase"
+      ]
+    },
+    {
+      "slug": "bedcare",
+      "art": "care",
+      "name": "BedCare Connect",
+      "kicker": "Shipped · AI × care",
+      "pitch": "Structured care for bedridden patients: task scheduling, live dashboards for families and caretakers, and Gemini summaries of case sheets. Web and Android.",
+      "stack": [
+        "Next.js",
+        "Supabase",
+        "Gemini",
+        "Capacitor",
+        "React Query"
+      ]
     },
     {
       "slug": "replywise",
@@ -57,37 +229,58 @@
       "name": "ReplyWise Local",
       "kicker": "LLMs × messaging",
       "pitch": "A local-first WhatsApp CRM that drafts replies with per-contact memory, and sends nothing until you approve it.",
-      "stack": ["Node.js", "Express", "whatsapp-web.js", "Gemini / Groq", "Docker"]
-    },
-    {
-      "slug": "learnx",
-      "art": "graph",
-      "name": "LearnX",
-      "kicker": "AI × education",
-      "pitch": "An AI learning platform that maps topics into a knowledge graph, generates quizzes on the fly and personalises each learner's path.",
-      "stack": ["Next.js", "TypeScript", "Supabase", "Tailwind CSS", "Gemini API"]
-    },
-    {
-      "slug": "scanoraai",
-      "art": "mri",
-      "name": "ScanoraAI",
-      "kicker": "Concept · vision × healthcare",
-      "pitch": "Knee-MRI decision support: multi-label abnormality prediction, Grad-CAM heatmaps that show why, and AI-assisted reports.",
-      "stack": ["Python", "Deep Learning", "Computer Vision", "Grad-CAM"]
+      "stack": [
+        "Node.js",
+        "Express",
+        "whatsapp-web.js",
+        "Gemini / Groq",
+        "Docker"
+      ]
     }
   ],
   "impact": [
-    {"value": "9.38", "label": "CGPA / 10", "sub": "B.Tech CSE (AI & ML), KARE"},
-    {"value": "IEEE", "label": "Machine Learning Head", "sub": "+ Robotics & Automation Society"},
-    {"value": "500+", "label": "hackathon participants", "sub": "organised"},
-    {"value": "250+", "label": "project expo participants", "sub": "organised"}
+    {
+      "value": "9.38",
+      "label": "CGPA / 10",
+      "sub": "B.Tech CSE (AI & ML), KARE"
+    },
+    {
+      "value": "Top 30",
+      "label": "Quantexa Hackathon",
+      "sub": "with Q-TrafficX"
+    },
+    {
+      "value": "500+",
+      "label": "students engaged",
+      "sub": "workshops, mentorship, hackathon"
+    },
+    {
+      "value": "IEEE",
+      "label": "Treasurer, KARE RAS",
+      "sub": "ex-Machine Learning Head"
+    }
   ],
   "links": [
-    ["linkedin", "LinkedIn"],
-    ["x", "X"],
-    ["instagram", "Instagram"],
-    ["email", "Email"],
-    ["github", "GitHub"]
+    [
+      "linkedin",
+      "LinkedIn"
+    ],
+    [
+      "x",
+      "X"
+    ],
+    [
+      "instagram",
+      "Instagram"
+    ],
+    [
+      "email",
+      "Email"
+    ],
+    [
+      "github",
+      "GitHub"
+    ]
   ],
   "closing": "Still training. Always shipping.",
   "signoff": "end of signal · karteyareddy"
