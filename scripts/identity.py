@@ -408,7 +408,7 @@ def hero(d):
           f'<circle cx="918" cy="64" r="5" fill="{C["cyan"]}" class="blink" filter="url(#ng)"/>'
           f'<text x="934" y="69.5" class="m" font-size="14" fill="{C["muted"]}">{escape(p["status"])}</text></g>'
         + reactor(1010, 236, k=1.25)
-        + decode(58, 112, p["name_lead"].upper(), 17, fill=C["lead"], extra=' letter-spacing="8" font-weight="700"', delay=.2)
+        + decode(56, 122, p["name_lead"].upper(), 34, cls="s", fill=C["lead"], extra=' letter-spacing="10" font-weight="300"', delay=.2)
         + f'<g class="up" style="animation-delay:.2s">' + display_name(52, 206, l1, 96, C["text"], delay=.35) + '</g>'
         + f'<g class="up" style="animation-delay:.35s">' + display_name(52, 296, l2, 96, "url(#g)", delay=.75) + '</g>'
         + tag
@@ -885,7 +885,7 @@ def hero_m(d):
     body = (panel(W, H) + aurora(W, H, seed=7, stars=16) + code_rain(W, H, seed=5, cols=7) + ignite(W, H)
             + f'<g class="up"><text x="40" y="66" class="m" font-size="17" letter-spacing="3" fill="{C["cyan"]}" font-weight="700">{escape(p["handle"].upper())}</text></g>'
             + decode(40, 92, p["eyebrow"].upper(), 13, extra=' letter-spacing="2"', delay=.3)
-            + decode(42, 136, p["name_lead"].upper(), 15, fill=C["lead"], extra=' letter-spacing="7" font-weight="700"', delay=.2)
+            + decode(40, 140, p["name_lead"].upper(), 28, cls="s", fill=C["lead"], extra=' letter-spacing="8" font-weight="300"', delay=.2)
             + f'<g class="up" style="animation-delay:.2s">' + display_name(38, 214, l1, 78, C["text"], delay=.35) + '</g>'
             + f'<g class="up" style="animation-delay:.35s">' + display_name(38, 290, l2, 78, "url(#g)", delay=.7) + '</g>'
             + f'<g class="up" style="animation-delay:.9s"><text x="40" y="344" class="s" font-size="30" font-weight="600" fill="{C["text"]}">{escape(p["tagline_a"])} '
