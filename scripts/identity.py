@@ -18,13 +18,35 @@ SANS = "'Segoe UI',Inter,-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial
 MONO = "'JetBrains Mono',SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace"
 
 # Aurora palette: electric cyan → blue → violet → magenta, amber only as a spark.
-P = {"cyan": "#00E5FF", "blue": "#4C8DFF", "violet": "#A855F7", "pink": "#FF3DA6", "amber": "#FFB224"}
-C = {
-    "bg": "#06080D", "panel": "#0A0D14", "chip": "#0F131C", "edge": "#1C2433", "edge2": "#2B3650",
-    "text": "#EEF2FA", "muted": "#A3ADC2", "dim": "#64708A", "mid": "#7E8BA6",
-    "cyan": P["cyan"], "blue": P["blue"], "violet": P["violet"], "pink": P["pink"],
+# Every asset is drawn twice, once per theme; README <picture> tags pick the one
+# matching the viewer's GitHub theme. The light accents are deeper so they keep
+# contrast on white.
+THEMES = {
+    "dark": {
+        "P": {"cyan": "#00E5FF", "blue": "#4C8DFF", "violet": "#A855F7", "pink": "#FF3DA6", "amber": "#FFB224"},
+        "C": {"bg": "#06080D", "panel": "#0A0D14", "chip": "#0F131C", "edge": "#1C2433", "edge2": "#2B3650",
+              "text": "#EEF2FA", "muted": "#B4BDD0", "dim": "#8792AB", "mid": "#97A3BD", "lead": "#C7CFDF",
+              "ink": "#FFFFFF", "dotop": ".06", "star": "1", "aur": 1.0, "scan": "#0B0F17"},
+    },
+    "light": {
+        "P": {"cyan": "#0891B2", "blue": "#2563EB", "violet": "#7C3AED", "pink": "#DB2777", "amber": "#D97706"},
+        "C": {"bg": "#FBFCFF", "panel": "#FFFFFF", "chip": "#FFFFFF", "edge": "#E2E7F1", "edge2": "#C9D2E3",
+              "text": "#0E1325", "muted": "#3F4862", "dim": "#5F6A85", "mid": "#5F6A85", "lead": "#59637D",
+              "ink": "#1E293B", "dotop": ".09", "star": ".45", "aur": .55, "scan": "#0B0F17"},
+    },
 }
-STOPS = [(0, P["cyan"]), (.35, P["blue"]), (.7, P["violet"]), (1, P["pink"])]
+P, C, STOPS = {}, {}, []
+
+
+def set_theme(name):
+    t = THEMES[name]
+    P.clear(); P.update(t["P"])
+    C.clear(); C.update(t["C"])
+    C.update(cyan=P["cyan"], blue=P["blue"], violet=P["violet"], pink=P["pink"])
+    STOPS[:] = [(0, P["cyan"]), (.35, P["blue"]), (.7, P["violet"]), (1, P["pink"])]
+
+
+set_theme("dark")
 
 BASE_CSS = (
     f".s{{font-family:{SANS}}}.m{{font-family:{MONO}}}"
@@ -88,9 +110,9 @@ def fx_defs(W, H):
             '<feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>'
             '<filter id="soft" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="14"/></filter>'
             '<pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse">'
-            '<circle cx="1.5" cy="1.5" r="1.1" fill="#fff" opacity=".06"/></pattern>'
-            '<linearGradient id="scan" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/>'
-            '<stop offset=".5" stop-color="#fff" stop-opacity=".045"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>')
+            f'<circle cx="1.5" cy="1.5" r="1.1" fill="{C["ink"]}" opacity="{C["dotop"]}"/></pattern>'
+            f'<linearGradient id="scan" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="{C["ink"]}" stop-opacity="0"/>'
+            f'<stop offset=".5" stop-color="{C["ink"]}" stop-opacity=".045"/><stop offset="1" stop-color="{C["ink"]}" stop-opacity="0"/></linearGradient>')
 
 
 def panel(w, h):
@@ -106,10 +128,10 @@ def aurora(W, H, seed=1, strength=1.0, stars=26):
         cx, cy = rnd.uniform(.05, .95) * W, rnd.uniform(.05, .95) * H
         rx, ry = rnd.uniform(.16, .28) * W, rnd.uniform(.3, .6) * H
         s += (f'<ellipse cx="{cx:.0f}" cy="{cy:.0f}" rx="{rx:.0f}" ry="{ry:.0f}" fill="{c}" '
-              f'opacity="{o * strength:.2f}" class="dr{i % 3 + 1}" filter="url(#bl)"/>')
+              f'opacity="{o * strength * C["aur"]:.2f}" class="dr{i % 3 + 1}" filter="url(#bl)"/>')
     for _ in range(stars):
         x, y, r = rnd.uniform(0, W), rnd.uniform(0, H), rnd.choice([1, 1, 1.4, 1.8])
-        s += (f'<circle cx="{x:.0f}" cy="{y:.0f}" r="{r}" fill="#fff" class="tw" '
+        s += (f'<circle cx="{x:.0f}" cy="{y:.0f}" r="{r}" fill="{C["ink"]}" opacity="{C["star"]}" class="tw" '
               f'style="animation-delay:-{rnd.uniform(0, 4):.1f}s;animation-duration:{rnd.uniform(2.4, 5):.1f}s"/>')
     s += f'<rect x="1" y="1" width="{W-2}" height="{H-2}" fill="url(#dots)"/>'
     s += f'<rect x="-320" y="0" width="320" height="{H}" fill="url(#scan)" class="scan"/>'
@@ -120,7 +142,7 @@ def neon_text(x, y, text, size, weight=700, cls="s", extra="", fill=None, ls="-1
     """Headline with a soft coloured glow sitting behind it."""
     fill = fill or C["text"]
     # the glow copy skips any light "lead" span so only the main name glows
-    glow = text.replace(f'fill="{C["muted"]}" class="lead"', 'fill="none"')
+    glow = text.replace(f'fill="{C["lead"]}" class="lead"', 'fill="none"')
     return (f'<text x="{x}" y="{y}" class="{cls}" font-size="{size}" font-weight="{weight}" fill="url(#g)" '
             f'letter-spacing="{ls}" filter="url(#soft)" opacity=".7"{extra}>{glow}</text>'
             f'<text x="{x}" y="{y}" class="{cls}" font-size="{size}" font-weight="{weight}" fill="{fill}" '
@@ -174,7 +196,8 @@ def node(x, y, r=14, delay=0.0, color=None):
             f'<circle cx="{x}" cy="{y}" r="2.8" fill="{color}" filter="url(#ng)"/>')
 
 
-def comet(path, dur="5.5s", begin="0s", color="#fff", r=4):
+def comet(path, dur="5.5s", begin="0s", color=None, r=4):
+    color = color or C["ink"]
     return (f'<circle r="{r}" fill="{color}" filter="url(#ng)">'
             f'<animateMotion dur="{dur}" begin="{begin}" repeatCount="indefinite" path="{path}"/></circle>')
 
@@ -220,7 +243,7 @@ def hero(d):
           f'<circle cx="918" cy="70" r="5" fill="{C["cyan"]}" class="blink" filter="url(#ng)"/>'
           f'<text x="934" y="75.5" class="m" font-size="14" fill="{C["muted"]}">{escape(p["status"])}</text></g>'
         + f'<g class="up" style="animation-delay:.2s">'
-        + neon_text(54, 158, f'<tspan font-weight="300" fill="{C["muted"]}" class="lead">{escape(p["name_lead"])} </tspan>{escape(p["name_main"])}', 62)
+        + neon_text(54, 158, f'<tspan font-weight="400" fill="{C["lead"]}" class="lead">{escape(p["name_lead"])} </tspan>{escape(p["name_main"])}', 62)
         + '</g>'
         + tag
         + f'<g class="up" style="animation-delay:1s"><text x="56" y="258" class="s" font-size="19" fill="{C["muted"]}">{escape(p["subline"])}</text></g>'
@@ -400,7 +423,67 @@ def art_chat():
     return s, css
 
 
-ART = {"traffic": art_traffic, "hand": art_hand, "chat": art_chat}
+def art_graph():
+    """LearnX: a knowledge graph with one learner's path lighting up node by node."""
+    N = [(820, 170), (900, 88), (900, 252), (985, 170), (1070, 88), (1070, 252), (1130, 170)]
+    edges = [(0, 1), (0, 2), (1, 3), (2, 3), (1, 4), (3, 4), (3, 5), (2, 5), (4, 6), (5, 6)]
+    path = [0, 1, 3, 5, 6]
+    s = "".join(f'<path d="M{N[a][0]} {N[a][1]} L{N[b][0]} {N[b][1]}" stroke="{C["edge2"]}" stroke-width="2"/>' for a, b in edges)
+    route = "M" + " L".join(f"{N[i][0]} {N[i][1]}" for i in path)
+    s += (f'<path d="{route}" fill="none" stroke="url(#ga)" stroke-width="3" stroke-linejoin="round" class="lp"/>'
+          f'<path d="{route}" fill="none" stroke="url(#ga)" stroke-width="10" stroke-linejoin="round" class="lp" opacity=".3" filter="url(#soft)"/>')
+    labels = {0: "intro", 1: "concepts", 3: "practice", 5: "quiz", 6: "mastery"}
+    for i, (x, y) in enumerate(N):
+        lit = path.index(i) if i in path else None
+        s += f'<circle cx="{x}" cy="{y}" r="13" fill="{C["chip"]}" stroke="{C["edge2"]}" stroke-width="1.5"/>'
+        if lit is not None:
+            s += (f'<circle cx="{x}" cy="{y}" r="13" fill="url(#ga)" class="lit" style="animation-delay:{lit * .9:.1f}s" filter="url(#ng)"/>'
+                  f'<circle cx="{x}" cy="{y}" r="13" fill="none" stroke="{P["cyan"]}" class="ring" style="animation-delay:{lit * .9:.1f}s"/>')
+        if i in labels:
+            lx, ly, anchor = (x - 18, y + 36, "start") if i == 6 else (x, y - 22 if y < 170 else y + 32, "middle")
+            s += f'<text x="{lx}" y="{ly}" class="m" font-size="12" fill="{C["dim"]}" text-anchor="{anchor}">{labels[i]}</text>'
+    s += comet(route, dur="4.5s", color=P["cyan"], r=3.5)
+    s += f'<text x="1144" y="306" class="m" font-size="13" fill="{C["dim"]}" text-anchor="end">knowledge graph → your path</text>'
+    css = (".lp{stroke-dasharray:520;animation:lp 4.5s ease-in-out infinite}"
+           "@keyframes lp{0%{stroke-dashoffset:520}70%,100%{stroke-dashoffset:0}}"
+           ".lit{opacity:0;animation:lit 4.5s ease-in-out infinite}@keyframes lit{0%{opacity:0}12%,80%{opacity:1}100%{opacity:0}}")
+    return s, css
+
+
+def art_mri():
+    """ScanoraAI: a stylised knee MRI slice with a Grad-CAM hot spot and label scores."""
+    s = (f'<rect x="790" y="44" width="210" height="250" rx="14" fill="{C["scan"]}" stroke="{C["edge2"]}"/>'
+         '<clipPath id="mc"><rect x="790" y="44" width="210" height="250" rx="14"/></clipPath>'
+         '<g clip-path="url(#mc)">'
+         # femur with two condyles, tibia, menisci
+         '<path d="M860 44 V136 Q858 166 884 170 Q895 172 895 160 Q895 172 906 170 Q932 166 930 136 V44" '
+         'fill="#9AA6BD" fill-opacity=".16" stroke="#C3CCDD" stroke-opacity=".65" stroke-width="2"/>'
+         '<path d="M852 196 Q895 186 940 196 V300 H852 Z" fill="#9AA6BD" fill-opacity=".16" stroke="#C3CCDD" stroke-opacity=".65" stroke-width="2"/>'
+         '<ellipse cx="874" cy="183" rx="17" ry="5" fill="#C3CCDD" opacity=".45"/><ellipse cx="917" cy="183" rx="17" ry="5" fill="#C3CCDD" opacity=".45"/>'
+         '<circle cx="903" cy="178" r="40" fill="url(#heat)" class="heat"/>'
+         f'<rect x="790" y="40" width="210" height="3" fill="{P["cyan"]}" opacity=".8" class="mscan" filter="url(#ng)"/>'
+         '</g>'
+         '<path d="M798 56 h14 M798 56 v14 M992 56 h-14 M992 56 v14 M798 282 h14 M798 282 v-14 M992 282 h-14 M992 282 v-14" '
+         f'stroke="{P["cyan"]}" stroke-width="2" fill="none" opacity=".8"/>')
+    scores = [("abnormal", .88), ("ACL tear", .74), ("meniscus", .41)]
+    for k, (name, v) in enumerate(scores):
+        y = 96 + k * 58
+        s += (f'<text x="1018" y="{y}" class="m" font-size="13" fill="{C["muted"]}">{name}</text>'
+              f'<text x="1146" y="{y}" class="m" font-size="13" fill="{P["cyan"] if v > .5 else C["dim"]}" text-anchor="end">{v:.2f}</text>'
+              f'<rect x="1018" y="{y + 10}" width="128" height="7" rx="3.5" fill="{C["edge"]}"/>'
+              f'<rect x="1018" y="{y + 10}" width="0" height="7" rx="3.5" fill="url(#ga)">'
+              f'<animate attributeName="width" values="0;{128 * v:.0f};{128 * v:.0f};0" keyTimes="0;.3;.85;1" begin="{k * .3:.1f}s" dur="5s" repeatCount="indefinite"/></rect>')
+    s += f'<text x="1146" y="306" class="m" font-size="13" fill="{C["dim"]}" text-anchor="end">Grad-CAM: shows why</text>'
+    s += (f'<defs><radialGradient id="heat"><stop offset="0" stop-color="{THEMES["dark"]["P"]["pink"]}" stop-opacity=".95"/>'
+          f'<stop offset=".45" stop-color="{THEMES["dark"]["P"]["amber"]}" stop-opacity=".55"/>'
+          f'<stop offset="1" stop-color="{THEMES["dark"]["P"]["amber"]}" stop-opacity="0"/></radialGradient></defs>')
+    css = (".heat{transform-box:fill-box;transform-origin:center;animation:heat 3s ease-in-out infinite}"
+           "@keyframes heat{50%{opacity:.55;transform:scale(.82)}}"
+           ".mscan{animation:mscan 3.6s ease-in-out infinite}@keyframes mscan{to{transform:translateY(256px)}}")
+    return s, css
+
+
+ART = {"traffic": art_traffic, "hand": art_hand, "chat": art_chat, "graph": art_graph, "mri": art_mri}
 
 
 def plate(i, pr):
@@ -464,7 +547,7 @@ def pill(kind, label):
     w = int(70 + tw(label, 20) + 26)
     body = (f'<rect x="1" y="1" width="{w-2}" height="58" rx="29" fill="{C["bg"]}" stroke="url(#rot)" stroke-width="2"/>'
             f'<rect x="1" y="1" width="{w-2}" height="58" rx="29" fill="url(#sh)"/>'
-            f'<g filter="url(#ng)">{GLYPH[kind]}</g>'
+            f'<g filter="url(#ng)">{GLYPH[kind].replace("#EEF2FA", C["text"])}</g>'
             f'<text x="64" y="37" class="s" font-size="20" font-weight="600" fill="{C["text"]}">{escape(label)}</text>')
     stops = "".join(f'<stop offset="{o}" stop-color="{c}"/>' for o, c in STOPS)
     defs = (grad("g", 20, 50)
@@ -534,7 +617,7 @@ def hero_m(d):
     body = (panel(W, H) + aurora(W, H, seed=7, stars=16)
             + f'<g class="up"><text x="40" y="70" class="m" font-size="17" letter-spacing="3" fill="{C["cyan"]}" font-weight="700">{escape(p["handle"].upper())}</text>'
             + f'<text x="40" y="98" class="m" font-size="16" letter-spacing="2" fill="{C["dim"]}">{escape(p["eyebrow"].upper())}</text></g>'
-            + f'<g class="up" style="animation-delay:.15s"><text x="38" y="168" class="s" font-size="50" font-weight="300" fill="{C["muted"]}">{escape(p["name_lead"])}</text></g>'
+            + f'<g class="up" style="animation-delay:.15s"><text x="38" y="168" class="s" font-size="50" font-weight="400" fill="{C["lead"]}">{escape(p["name_lead"])}</text></g>'
             + f'<g class="up" style="animation-delay:.3s">' + neon_text(38, 224, escape(p["name_main"]), 54) + '</g>'
             + f'<g class="up" style="animation-delay:.6s"><text x="40" y="276" class="s" font-size="30" font-weight="600" fill="{C["text"]}">{escape(p["tagline_a"])} '
               f'<tspan fill="url(#gt)">{escape(tb1)}</tspan></text>'
@@ -608,6 +691,16 @@ def main():
     d = json.loads(Path(a.data).read_text(encoding="utf-8"))
     out = Path(a.out)
     out.mkdir(parents=True, exist_ok=True)
+    for theme, suffix in (("dark", ""), ("light", "-light")):
+        set_theme(theme)
+        for name, text in build(d).items():
+            name = name.replace(".svg", f"{suffix}.svg")
+            (out / name).write_text(text, encoding="utf-8")
+            print(f"{name:34} {len(text.encode()):>6} B")
+    set_theme("dark")
+
+
+def build(d):
     files = {"sp-hero.svg": hero(d), "sp-arsenal.svg": arsenal(d["arsenal"]),
              "sp-impact.svg": impact(d["impact"]), "sp-end.svg": closing(d),
              "sp-hero-m.svg": hero_m(d), "sp-arsenal-m.svg": arsenal(d["arsenal"], W=600),
@@ -620,9 +713,7 @@ def main():
         files[f"sp-p-{pr['slug']}-m.svg"] = plate_m(i, pr)
     for kind, label in d["links"]:
         files[f"sp-link-{kind}.svg"] = pill(kind, label)
-    for name, text in files.items():
-        (out / name).write_text(text, encoding="utf-8")
-        print(f"{name:28} {len(text.encode()):>6} B")
+    return files
 
 
 if __name__ == "__main__":

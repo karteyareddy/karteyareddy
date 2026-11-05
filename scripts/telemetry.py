@@ -16,10 +16,11 @@ import urllib.request
 from collections import defaultdict
 from xml.sax.saxutils import escape
 
-from identity import C, P, grad, panel, svg, fx_defs, aurora, neon_text, comet
+from identity import C, P, grad, panel, svg, fx_defs, aurora, neon_text, comet, set_theme
 
 SKIP_LANGS = {"HTML", "CSS", "Dockerfile", "Makefile", "Shell", "Batchfile", "Procfile", "PowerShell"}
-LANG_COLORS = [P["cyan"], P["blue"], P["violet"], P["pink"], P["amber"], "#14B8A6", "#64748B"]
+def lang_colors():
+    return [P["cyan"], P["blue"], P["violet"], P["pink"], P["amber"], "#14B8A6", "#64748B"]
 
 
 def get(url, raw=False):
@@ -149,7 +150,7 @@ def draw(user, days, langs, repo_count):
     bar = ""
     for k, (name, frac) in enumerate(langs):
         w = frac * bw
-        bar += f'<rect x="{x:.1f}" y="{y+18}" width="{max(w-3, 1):.1f}" height="12" fill="{LANG_COLORS[k % 7]}"/>'
+        bar += f'<rect x="{x:.1f}" y="{y+18}" width="{max(w-3, 1):.1f}" height="12" fill="{lang_colors()[k % 7]}"/>'
         x += w
     body += (f'<clipPath id="bar"><rect x="56" y="{y+18}" width="{bw}" height="12" rx="6"/></clipPath>'
              f'<clipPath id="fill"><rect x="56" y="{y+10}" width="0" height="28">'
@@ -163,7 +164,7 @@ def draw(user, days, langs, repo_count):
         if lx + wlab > 1144:
             lx, ly = 56.0, ly + 30
         body += (f'<g class="up" style="animation-delay:{1.2 + k * .12:.2f}s">'
-                 f'<circle cx="{lx+6:.1f}" cy="{ly-6}" r="6" fill="{LANG_COLORS[k % 7]}" filter="url(#ng)"/>'
+                 f'<circle cx="{lx+6:.1f}" cy="{ly-6}" r="6" fill="{lang_colors()[k % 7]}" filter="url(#ng)"/>'
                  f'<text x="{lx+20:.1f}" y="{ly}" class="s" font-size="18" fill="{C["text"]}">{escape(name)}'
                  f'<tspan fill="{C["dim"]}" dx="8">{frac*100:.1f}%</tspan></text></g>')
         lx += wlab + 14
@@ -196,9 +197,12 @@ def main():
         with open(cache, encoding="utf-8") as f:
             c = json.load(f)
         langs, n = [tuple(x) for x in c["langs"]], c["repos"]
-    text, alt = draw(a.user, days, langs, n)
-    with open(a.out, "w", encoding="utf-8") as f:
-        f.write(text)
+    for theme, out in (("dark", a.out), ("light", a.out.replace(".svg", "-light.svg"))):
+        set_theme(theme)
+        text, alt = draw(a.user, days, langs, n)
+        with open(out, "w", encoding="utf-8") as f:
+            f.write(text)
+    set_theme("dark")
     print(alt)
 
 

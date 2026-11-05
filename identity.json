@@ -58,6 +58,22 @@
       "kicker": "LLMs × messaging",
       "pitch": "A local-first WhatsApp CRM that drafts replies with per-contact memory, and sends nothing until you approve it.",
       "stack": ["Node.js", "Express", "whatsapp-web.js", "Gemini / Groq", "Docker"]
+    },
+    {
+      "slug": "learnx",
+      "art": "graph",
+      "name": "LearnX",
+      "kicker": "AI × education",
+      "pitch": "An AI learning platform that maps topics into a knowledge graph, generates quizzes on the fly and personalises each learner's path.",
+      "stack": ["Next.js", "TypeScript", "Supabase", "Tailwind CSS", "Gemini API"]
+    },
+    {
+      "slug": "scanoraai",
+      "art": "mri",
+      "name": "ScanoraAI",
+      "kicker": "Concept · vision × healthcare",
+      "pitch": "Knee-MRI decision support: multi-label abnormality prediction, Grad-CAM heatmaps that show why, and AI-assisted reports.",
+      "stack": ["Python", "Deep Learning", "Computer Vision", "Grad-CAM"]
     }
   ],
   "impact": [
