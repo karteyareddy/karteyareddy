@@ -538,6 +538,11 @@ GLYPH = {
                 '<path d="M29 28v9M29 24v.5M34 37v-9M34 31.5c0-2 1.6-3.5 3.5-3.5s3.5 1.5 3.5 3.5V37" stroke="#EEF2FA" stroke-width="2.2" stroke-linecap="round" fill="none"/>',
     "email": '<rect x="21" y="19" width="28" height="22" rx="5" fill="none" stroke="url(#g)" stroke-width="2"/>'
              '<path d="M23 22l12 9 12-9" stroke="#EEF2FA" stroke-width="2.2" fill="none" stroke-linejoin="round"/>',
+    "x": '<rect x="22" y="17" width="26" height="26" rx="6" fill="none" stroke="url(#g)" stroke-width="2"/>'
+         '<path d="M29 23.5l12 13M41 23.5l-12 13" stroke="#EEF2FA" stroke-width="2.2" stroke-linecap="round" fill="none"/>',
+    "instagram": '<rect x="22" y="17" width="26" height="26" rx="8" fill="none" stroke="url(#g)" stroke-width="2"/>'
+                 '<circle cx="35" cy="30" r="6" fill="none" stroke="#EEF2FA" stroke-width="2.2"/>'
+                 '<circle cx="42" cy="23.5" r="1.5" fill="#EEF2FA"/>',
     "github": '<circle cx="35" cy="30" r="13" fill="none" stroke="url(#g)" stroke-width="2"/>'
               '<path d="M30 37v-3.5c0-1.4.5-2.3 1.2-2.8-3-.4-5-1.6-5-5 0-1.2.4-2.2 1.2-3-.1-.4-.5-1.6.1-3.1 0 0 1-.3 3.3 1.2a11 11 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.5.2 2.7.1 3.1.8.8 1.2 1.8 1.2 3 0 3.4-2 4.6-5 5 .7.5 1.2 1.4 1.2 2.8V37" stroke="#EEF2FA" stroke-width="1.8" fill="none" stroke-linejoin="round"/>',
 }
@@ -691,13 +696,41 @@ def main():
     d = json.loads(Path(a.data).read_text(encoding="utf-8"))
     out = Path(a.out)
     out.mkdir(parents=True, exist_ok=True)
-    for theme, suffix in (("dark", ""), ("light", "-light")):
+    themed = {}
+    for theme in ("dark", "light"):
         set_theme(theme)
-        for name, text in build(d).items():
-            name = name.replace(".svg", f"{suffix}.svg")
-            (out / name).write_text(text, encoding="utf-8")
-            print(f"{name:34} {len(text.encode()):>6} B")
+        themed[theme] = build(d)
     set_theme("dark")
+    for name, dark in themed["dark"].items():
+        light = themed["light"][name]
+        if name.endswith("-m.svg"):
+            # Phone variants: GitHub's theme switcher can't combine a width rule with a
+            # theme rule, so these carry both themes and pick one with their own media query.
+            outputs = {name.replace("-m.svg", "-m-auto.svg"): merge_themes(dark, light)}
+        else:
+            outputs = {name: dark, name.replace(".svg", "-light.svg"): light}
+        for fname, text in outputs.items():
+            (out / fname).write_text(text, encoding="utf-8")
+            print(f"{fname:34} {len(text.encode()):>6} B")
+    for stale in out.glob("sp-*-m.svg"):
+        stale.unlink()
+    for stale in out.glob("sp-*-m-light.svg"):
+        stale.unlink()
+
+
+def merge_themes(dark, light):
+    """One SVG holding both themes; prefers-color-scheme inside it decides which shows."""
+    import re
+    head = dark[:dark.index(">") + 1]
+    inner_d = dark[dark.index(">") + 1:dark.rindex("</svg>")]
+    inner_l = light[light.index(">") + 1:light.rindex("</svg>")]
+    inner_l = re.sub(r'<title id="t">.*?</title>', "", inner_l)
+    for i in set(re.findall(r'id="([\w-]+)"', inner_l)):
+        inner_l = (inner_l.replace(f'id="{i}"', f'id="L{i}"').replace(f"url(#{i})", f"url(#L{i})")
+                   .replace(f'href="#{i}"', f'href="#L{i}"'))
+    switch = ("<style>.TL{display:none}@media (prefers-color-scheme:light)"
+              "{.TD{display:none}.TL{display:inline}}</style>")
+    return f'{head}{switch}<g class="TD">{inner_d}</g><g class="TL">{inner_l}</g></svg>\n'
 
 
 def build(d):
