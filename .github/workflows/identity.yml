@@ -1,0 +1,45 @@
+name: Signal Path assets
+
+# Redraws the profile SVGs. Static assets change only when identity.json or the
+# scripts change; the GitHub telemetry panel refreshes daily from public data.
+on:
+  schedule:
+    - cron: "15 2 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "identity.json"
+      - "scripts/identity.py"
+      - "scripts/telemetry.py"
+      - ".github/workflows/identity.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  draw:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Static assets
+        run: python scripts/identity.py --data identity.json --out assets
+
+      - name: GitHub telemetry
+        working-directory: scripts
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python telemetry.py --user "${{ github.repository_owner }}" --out ../assets/sp-telemetry.svg
+
+      - name: Commit if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/sp-*.svg assets/telemetry-langs.json
+          git diff --staged --quiet || git commit -m "chore: redraw profile assets [skip ci]"
+          git push

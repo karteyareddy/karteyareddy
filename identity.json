@@ -1,0 +1,76 @@
+{
+  "_comment": "Content for scripts/identity.py. Prefix an arsenal item with * to mark it as evidenced in a public repo.",
+  "person": {
+    "full_name": "Kristipati Karteya Reddy",
+    "name_lead": "Kristipati",
+    "name_main": "Karteya Reddy",
+    "handle": "Karthi",
+    "eyebrow": "CSE · AI & ML · KARE '28",
+    "status": "exploring · AI agents",
+    "tagline_a": "I build AI that",
+    "tagline_b": "leaves the notebook.",
+    "subline": "Computer vision, language and learning systems, wired into full-stack products people can actually use."
+  },
+  "pipeline": [
+    {"verb": "SEE", "with": "OpenCV · MediaPipe"},
+    {"verb": "UNDERSTAND", "with": "NLP · embeddings"},
+    {"verb": "DECIDE", "with": "ML · deep learning"},
+    {"verb": "SHIP", "with": "Next.js · Supabase · Django"}
+  ],
+  "sections": [
+    ["about", "About", "~/about"],
+    ["arsenal", "Technology arsenal", "~/stack"],
+    ["projects", "Selected work", "~/projects"],
+    ["leadership", "Leadership & impact", "~/ieee"],
+    ["telemetry", "Signal from GitHub", "~/telemetry"],
+    ["now", "Currently exploring", "~/now"],
+    ["connect", "Connect", "~/contact"]
+  ],
+  "arsenal": [
+    {"label": "Languages", "note": "daily drivers first", "items": ["*Python", "*TypeScript", "*JavaScript", "Java", "C"]},
+    {"label": "AI / ML", "note": "models and perception", "items": ["Machine Learning", "Deep Learning", "NLP", "*Computer Vision", "*MediaPipe", "OpenCV", "TensorFlow"]},
+    {"label": "Frontend", "note": "interfaces", "items": ["*Next.js", "*React", "*Tailwind CSS", "*Framer Motion", "HTML", "CSS"]},
+    {"label": "Backend", "note": "services and APIs", "items": ["*Node.js", "*REST APIs", "Django"]},
+    {"label": "Data & cloud", "note": "storage and hosting", "items": ["*Supabase", "*PostgreSQL", "Firebase", "Oracle Cloud"]},
+    {"label": "Tools", "note": "workflow", "items": ["*Git", "*GitHub", "VS Code", "Streamlit", "Linux"]}
+  ],
+  "projects": [
+    {
+      "slug": "qtrafficx",
+      "art": "traffic",
+      "name": "Q-TrafficX",
+      "kicker": "Quantum × urban mobility",
+      "pitch": "A weather-aware traffic digital twin that turns signal timing into QUBO problems and solves them with QAOA, benchmarked against classical solvers.",
+      "stack": ["Python", "Qiskit Aer", "FastAPI", "NetworkX", "Next.js"]
+    },
+    {
+      "slug": "signbridge",
+      "art": "hand",
+      "name": "SignBridge India",
+      "kicker": "Accessibility × vision",
+      "pitch": "A Deaf-first Indian Sign Language network: QR access points, offline phrase packs, and sign recognition that hands off to a human when confidence drops.",
+      "stack": ["Next.js", "MediaPipe", "FastAPI", "PyTorch", "Supabase"]
+    },
+    {
+      "slug": "replywise",
+      "art": "chat",
+      "name": "ReplyWise Local",
+      "kicker": "LLMs × messaging",
+      "pitch": "A local-first WhatsApp CRM that drafts replies with per-contact memory, and sends nothing until you approve it.",
+      "stack": ["Node.js", "Express", "whatsapp-web.js", "Gemini / Groq", "Docker"]
+    }
+  ],
+  "impact": [
+    {"value": "9.38", "label": "CGPA / 10", "sub": "B.Tech CSE (AI & ML), KARE"},
+    {"value": "IEEE", "label": "Machine Learning Head", "sub": "+ Robotics & Automation Society"},
+    {"value": "500+", "label": "hackathon participants", "sub": "organised"},
+    {"value": "250+", "label": "project expo participants", "sub": "organised"}
+  ],
+  "links": [
+    ["linkedin", "LinkedIn"],
+    ["email", "Email"],
+    ["github", "GitHub"]
+  ],
+  "closing": "Still training. Always shipping.",
+  "signoff": "end of signal · karteyareddy"
+}
